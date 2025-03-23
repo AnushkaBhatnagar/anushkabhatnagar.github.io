@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anushka Bhatnagar</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS will be linked here -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Anushka Bhatnagar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="#">Skills</a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item">
+                        <div class="mode-toggle">
+                            <input type="checkbox" id="dark-mode-toggle" class="dark-mode-checkbox">
+                            <label for="dark-mode-toggle" class="dark-mode-label">
+                                <i class="fas fa-sun"></i>
+                                <i class="fas fa-moon"></i>
+                                <span class="ball"></span>
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-md-10 mx-auto text-center">
+                    <h1 class="name pb-1">Anushka Bhatnagar</h1>
+                    <p class="tagline">Software Developer</p>
+                    <!-- <div class="hero-doodle-container"> -->
+                        <!-- Hero doodles will be drawn here by JS -->
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <a href="#about"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="section-title">
+                        <h2>About Me</h2>
+                        <div class="about-doodle-container">
+                            <!-- About doodles will be drawn here by JS -->
+                        </div>
+                    </div>
+                    <p class="about-text">
+                        I'm a graduate computer science student at Columbia University, passionate about innovation and design in technology. I'm interested in human-computer interaction, building accessible and inclusive UI/UX design, and web development. I'm looking for opportunities in the domains of full-stack development, technology management, and consulting.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <!-- add here -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Skills Section -->
+    <!-- <section id="skills" class="skills-section">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Skills</h2>
+            </div>
+            <div class="skills-doodle-container">
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="skills-cloud">
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-css3-alt"></i>
+                            </div>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-js"></i>
+                            </div>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <span>React</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-node-js"></i>
+                            </div>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-git-alt"></i>
+                            </div>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <span>SQL</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-figma"></i>
+                            </div>
+                            <span>Figma</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-aws"></i>
+                            </div>
+                            <span>AWS</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-bootstrap"></i>
+                            </div>
+                            <span>Bootstrap</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <span>Responsive Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Education Section -->
+    <!-- <section id="education" class="education-section">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Education</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="education-doodle" id="columbia-doodle">
+                        </div>
+                        <h3>Columbia University</h3>
+                        <p class="timeline-date">2018 - 2022</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="education-doodle" id="highschool-doodle">
+                        </div>
+                        <h3>Prestigious High School</h3>
+                        <p class="timeline-date">2014 - 2018</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Projects</h2>
+            </div>
+            <div class="row mb-5">
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <img src="Images/Wave.png" class="card-img-top" alt="Wave Image">
+                        <div class="project-info">
+                            <h3>Wave</h3>
+                            <p>A smart journaling application which offers emotion prediction and analysis for your daily journal entries.
+                            </p>
+                            <div class="project-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <a href="https://github.com/AnushkaBhatnagar/Wave" target="_blank" class="btn btn-outline-primary">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <img src="Images/MeaLit.png" class="card-img-top" alt="MeaLit Image">
+                        <div class="project-info">
+                            <h3>MeaLit</h3>
+                            <p>A dynamic food recommendation engine offering personalized restaurant and recipe suggestions based on your preferences.
+                            </p>
+                            <div class="project-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <a href="https://github.com/AnushkaBhatnagar/MeaLit-2,0" target="_blank" class="btn btn-outline-primary">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <img src="Images/Hype.jpg" class="card-img-top" alt="Hype Image">
+                        <div class="project-info">
+                            <h3>Hype</h3>
+                            <p>A one-stop platform for college clubs and committees that keeps students in loop with the latest updates, events, and parties.
+                            </p>
+                            <div class="project-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <a href="https://github.com/AnushkaBhatnagar/Hype" target="_blank" class="btn btn-outline-primary">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <img src="Images/ZigZag.png" class="card-img-top" alt="ZigZag Image">
+                        <div class="project-info">
+                            <h3>ZigZag</h3>
+                            <p>An ultimate guide for college students in Mumbai. 
+                                for seeking out the best tourist attractions,  cafes, restaurants, and fabulous shopping destinations.
+                            </p>
+                            <div class="project-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <a href="https://github.com/AnushkaBhatnagar/ZigZag" target="_blank" class="btn btn-outline-primary">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <img src="Images/Artisano.jpg" class="card-img-top" alt="Artisano Image">
+                        <div class="project-info">
+                            <h3>Artisano</h3>
+                            <p>A platform to discover unique art pieces, explore the works of talented artists, and experience the beauty of gallery culture.
+                            </p>
+                            <div class="project-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <a href="https://github.com/AnushkaBhatnagar/Artisano" target="_blank" class="btn btn-outline-primary">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <img src="Images/Jobifyr.jpg" class="card-img-top" alt="Jobifyr Image">
+                        <div class="project-info">
+                            <h3>Jobifyr</h3>
+                            <p>A centralized hub for job search, career development resources and employer-university collaboration, bridging the gap between students, employers and universities. 
+                            </p>
+                            <div class="project-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <a href="https://github.com/AnushkaBhatnagar/Jobifyr" target="_blank" class="btn btn-outline-primary">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Publications Section -->
+<section id="publications" class="publications-section">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2>Publications</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="publication-card">
+                    <div class="publication-content">
+                        <h3 class="publication-title">Emotion Analysis in Smart Journals: Bridging ML and NLP for Holistic Mental Health Monitoring</h3>
+                        <p class="publication-authors">
+                            Authors: Soumya Vaidya, Anushka Bhatnagar, Shobhit Patel, Manisha Tiwari, Pragati Khare</p>
+                        <p class="publication-authors">
+                            Conference: International Conference on Emerging Trends in Networks and Computer Communications (ETNCC), 2024
+                        </p>
+                        <p class="publication-authors">
+                            Publication: IEEE Xplore
+                        </p>
+                        <div class="publication-links">
+                            <a href="https://ieeexplore.ieee.org/abstract/document/10767437" target="_blank" class="publication-link">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Paper</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="publication-card">
+                    <div class="publication-content">
+                        <h3 class="publication-title">
+                            Emotion Analysis and Trend Tracking in Smart Journals: A Review                        </h3>
+                        <p class="publication-authors">
+                            Authors: Anushka Bhatnagar, Soumya Vaidya, Shobhit Patel, Manisha Tiwari, Pragati Khare</p>
+                        <p class="publication-authors">
+                            Conference: International Conference on Innovative Computing & Communication (ICICC) 2024                        </p>
+                        <p class="publication-authors">
+                            Publication: Elsevier SSRN
+                        </p>
+                        <div class="publication-links">
+                            <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4993831" target="_blank" class="publication-link">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Paper</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <div class="contact-doodle-container">
+                        <!-- Contact doodles will be drawn here by JS -->
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>anushka.bhatnagar@columbia.com</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <p><a href="https://linkedin.com/in/anushkabhatnagar" target="_blank">LinkedIn</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>Made by Anushka Bhatnagar. Last Updated March 2025. </p>
+        </div>
+    </footer>
+
+    <!-- Floating Doodles Container -->
+    <div class="floating-doodles">
+        <!-- Random floating doodles will be added here by JS -->
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Custom JS will be linked here -->
+    <script src="script.js"></script>
+</body>
+</html>
