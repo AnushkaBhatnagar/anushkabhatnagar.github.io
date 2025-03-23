@@ -283,3 +283,7 @@ darkModeToggle.addEventListener('change', function() {
         localStorage.setItem('darkMode', 'disabled');
     }
 });
+
+function zoom() {
+    document.body.style.zoom = "80%" 
+}
