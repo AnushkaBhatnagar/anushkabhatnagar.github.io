@@ -284,6 +284,10 @@ darkModeToggle.addEventListener('change', function() {
     }
 });
 
+document.querySelector('.navbar-brand').addEventListener('click', function (e) {
+    this.blur(); // Removes focus from the element after a click
+  });  
+
 function zoom() {
     document.body.style.zoom = "80%" 
 }

@@ -40,7 +40,7 @@ body {
 }
 
 section {
-  padding: 6rem 0;
+  padding: 3rem 0;
   position: relative;
 }
 
@@ -60,7 +60,7 @@ a:hover {
 }
 
 .container {
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -111,7 +111,7 @@ a:hover {
   padding: 0.5rem 0;
 }
 
-.nav-link:hover {
+.nav-link:hover, .navbar-brand:hover {
   color: var(--accent-color);
 }
 
@@ -132,7 +132,7 @@ a:hover {
 
 /* Hero Section */
 .hero-section {
-  height: 100vh;
+  height: 125vh;
   background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%, transparent);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
@@ -161,6 +161,7 @@ a:hover {
 .hero-section .name {
   font-size: 3.75rem;
   font-weight: 700;
+  padding-bottom: 0.3rem;
   margin-bottom: 1rem;
   position: relative;
   z-index: 1;
@@ -170,12 +171,31 @@ a:hover {
   background-clip: text;
 }
 
+.hero-section .role-container {
+  margin-top: 1rem;
+}
+
+.hero-section .role {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+  position: relative;
+  z-index: 1;
+}
+
 .hero-section .tagline {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 400;
   margin-bottom: 1.8rem;
   position: relative;
   z-index: 1;
+  /* font-style: italic; */
+  color: var(--accent-color);
+}
+
+/* For dark mode compatibility */
+.dark-mode .hero-section .tagline {
+  color: var(--dark-accent-color);
 }
 
 .scroll-down {
@@ -308,7 +328,7 @@ a:hover {
   font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
-  color: #666;
+  /* color: #666; */
 }
 
 .publication-links {
@@ -427,7 +447,8 @@ body.dark-mode {
   box-shadow: var(--dark-shadow);
 }
 
-.dark-mode .nav-link {
+.dark-mode .nav-link,
+.dark-mode .navbar-brand:focus {
   color: var(--dark-text-color);
 }
 
@@ -451,15 +472,15 @@ body.dark-mode {
 }
 
 .dark-mode .about-section,
-.dark-mode .contact-section,
 .dark-mode .project-card,
-.dark-mode .publication-card {
+.dark-mode .footer,
+.dark-mode .publications-section {
   background-color: var(--dark-white);
 }
 
 .dark-mode .projects-section,
-.dark-mode .publications-section,
-.dark-mode .footer {
+.dark-mode .contact-section,
+.dark-mode .publication-card {
   background-color: var(--dark-light-bg);
 }
 
@@ -482,7 +503,8 @@ body.dark-mode {
 }
 
 .dark-mode a {
-  color: var(--dark-accent-color);
+  /* color: var(--dark-accent-color); */
+  color: var(--dark-text-color);
 }
 
 .dark-mode a:hover {
