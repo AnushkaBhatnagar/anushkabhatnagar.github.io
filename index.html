@@ -2,281 +2,1276 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8">
-    <title>Anushka Bhatnagar</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Normalize CSS -->
-    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Text</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cardo', serif;
+            background: linear-gradient(135deg, #fff6ff 0%, #c1d6ff 100%);
+            min-height: 100vh;
+            padding: 100px 80px 0 80px;
+        }
+
+        .hero-section {
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+            gap: 60px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-image {
+            width: 400px;
+            height: 300px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cardo', serif;
+            color: rgba(44, 44, 44, 0.5);
+            font-size: 16px;
+            flex-shrink: 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* About Section */
+        .about-section {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+            margin: 0;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .about-text {
+            font-family: 'Cardo', serif;
+            font-size: 20px;
+            color: #4a4a4a;
+            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .about-text:last-child {
+            margin-bottom: 40px;
+        }
+
+        .skills-section {
+            margin-top: 30px;
+        }
+
+        .skills-title {
+            font-family: 'Cardo', serif;
+            font-size: 20px;
+            color: #2c2c2c;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .skills-text {
+            font-family: 'Cardo', serif;
+            font-size: 16px;
+            color: #4a4a4a;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .skills-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .skills-text strong {
+            color: #8B7EC8;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .education-section {
+            margin-top: 80px;
+            max-width: 1200px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 44px;
+            color: #2c2c2c;
+            font-weight: 600;
+            margin-bottom: 60px;
+        }
+
+        .education-item {
+            margin-bottom: 75px;
+            display: flex;
+            align-items: flex-start;
+            gap: 35px;
+        }
+
+        .education-item.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .education-content {
+            flex: 1;
+        }
+
+        .education-image {
+            width: 275px;
+            height: 180px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cardo', serif;
+            color: rgba(44, 44, 44, 0.5);
+            font-size: 16px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .education-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .university-header {
+            font-family: 'Cardo', serif;
+            font-size: 22px;
+            color: #2c2c2c;
+            font-style: normal;
+            margin-bottom: 6px;
+        }
+
+        .location {
+            font-family: 'Cardo', serif;
+            font-size: 22px;
+            color: #2c2c2c;
+            font-style: normal;
+            margin-bottom: 18px;
+        }
+
+        .degree {
+            font-family: 'Cardo', serif;
+            font-size: 17px;
+            color: #4a4a4a;
+            font-style: italic;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .specialization {
+            font-family: 'Cardo', serif;
+            font-size: 17px;
+            color: #4a4a4a;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 80px;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Cardo', serif;
+            font-size: 18px;
+            color: #2c2c2c;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .main-heading {
+            font-size: 48px;
+            color: #2c2c2c;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+        }
+
+        .name {
+            margin-left: 0;
+        }
+
+        .description {
+            font-size: 22px;
+            color: #4a4a4a;
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        .tagline {
+            font-size: 22px;
+            color: #4a4a4a;
+            font-weight: 400;
+            line-height: 1.4;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Optional: Add a subtle fade-in to the navbar */
+        .navbar {
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Research Publications Section */
+        .research-section {
+            margin-top: 80px;
+            max-width: 1200px;
+        }
+
+        .publication-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 18px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .publication-title {
+            font-family: 'Cardo', serif;
+            font-size: 18px;
+            color: #8B7EC8;
+            font-weight: 400;
+            margin-bottom: 12px;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .paper-link {
+            font-family: 'Cardo', serif;
+            font-size: 14px;
+            color: #8B7EC8;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .paper-link:hover {
+            opacity: 0.7;
+        }
+
+        .publication-authors {
+            font-family: 'Cardo', serif;
+            font-size: 14px;
+            color: #4a4a4a;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .publication-authors strong {
+            color: #2c2c2c;
+        }
+
+        .publication-details {
+            font-family: 'Cardo', serif;
+            font-size: 14px;
+            color: #4a4a4a;
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+
+        .publication-details strong {
+            color: #2c2c2c;
+        }
+
+        /* Work Section */
+        .work-section {
+            margin-top: 80px;
+            max-width: 1200px;
+        }
+
+        .work-item {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 0;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+            border: 1px solid rgba(139, 126, 200, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .work-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 126, 200, 0.12);
+            border-color: rgba(139, 126, 200, 0.4);
+        }
+
+        .work-content {
+            padding: 16px 18px;
+        }
+
+        .work-header {
+            font-family: 'Cardo', serif;
+            font-size: 16px;
+            color: #2c2c2c;
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .work-location {
+            font-family: 'Cardo', serif;
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 400;
+            background: rgba(139, 126, 200, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .work-subheader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .job-title {
+            font-family: 'Cardo', serif;
+            font-size: 14px;
+            color: #8B7EC8;
+            font-weight: 600;
+        }
+
+        .work-date {
+            font-family: 'Cardo', serif;
+            font-size: 11px;
+            color: #6b7280;
+            font-weight: 500;
+            background: rgba(107, 114, 128, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .work-description {
+            font-family: 'Cardo', serif;
+            font-size: 13px;
+            color: #4a4a4a;
+            line-height: 1.4;
+        }
+
+        .work-description ul {
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .work-description li {
+            margin-bottom: 6px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .work-description li:before {
+            content: "▸";
+            color: #8B7EC8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 12px;
+        }
+
+        .work-description li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            margin-top: 80px;
+            max-width: 1200px;
+        }
+
+        .projects-subtitle {
+            font-family: 'Cardo', serif;
+            font-size: 18px;
+            margin-bottom: 20px;
+            margin-top: -40px;
+        }
+
+        .view-all-link {
+            color: #8B7EC8;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .view-all-link:hover {
+            opacity: 0.7;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cardo', serif;
+            color: rgba(44, 44, 44, 0.5);
+            font-size: 16px;
+            overflow: hidden;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 16px;
+        }
+
+        .project-name {
+            font-family: 'Cardo', serif;
+            font-size: 22px;
+            color: #8B7EC8;
+            font-weight: 400;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .github-link {
+            font-family: 'Cardo', serif;
+            font-size: 14px;
+            color: #8B7EC8;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .github-link:hover {
+            opacity: 0.7;
+        }
+
+        .project-description {
+            font-family: 'Cardo', serif;
+            font-size: 15px;
+            color: #4a4a4a;
+            line-height: 1.4;
+            margin-bottom: 14px;
+        }
+
+        .project-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            font-family: 'Cardo', serif;
+            font-size: 12px;
+            color: #4a4a4a;
+            background-color: rgba(139, 126, 200, 0.1);
+            padding: 4px 8px;
+            border-radius: 16px;
+            border: 1px solid rgba(139, 126, 200, 0.3);
+        }
+
+        .github-button {
+            font-family: 'Cardo', serif;
+            font-size: 16px;
+            color: #8B7EC8;
+            background: transparent;
+            border: 2px solid #8B7EC8;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .github-button:hover {
+            background-color: #8B7EC8;
+            color: white;
+        }
+
+        /* Contributed To Section */
+        .contributed-subtitle {
+            font-family: 'Cardo', serif;
+            font-size: 24px;
+            color: #2c2c2c;
+            font-weight: 400;
+            margin-top: 60px;
+            margin-bottom: 30px;
+        }
+
+        .contribution-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 0;
+            align-items: stretch;
+            overflow: hidden;
+        }
+
+        .contribution-image {
+            width: 170px;
+            border-radius: 0;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .contribution-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contribution-content {
+            flex: 1;
+            padding: 18px;
+        }
+
+        .contribution-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .contribution-title {
+            font-family: 'Cardo', serif;
+            font-size: 20px;
+            color: #8B7EC8;
+            font-weight: 400;
+            margin-bottom: 6px;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .website-link {
+            font-family: 'Cardo', serif;
+            font-size: 14px;
+            color: #8B7EC8;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .mentored-by {
+            font-family: 'Cardo', serif;
+            font-size: 14px;
+            color: #4a4a4a;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .mentored-by strong {
+            color: #2c2c2c;
+        }
+
+        .mentor-link {
+            color: #8B7EC8;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .mentor-link:hover {
+            opacity: 0.7;
+        }
+
+        .contribution-details {
+            margin-bottom: 15px;
+        }
+
+        .contribution-detail {
+            font-family: 'Cardo', serif;
+            font-size: 14px;
+            color: #4a4a4a;
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+
+        .contribution-detail strong {
+            color: #2c2c2c;
+        }
+
+        .contribution-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            body {
+                padding: 80px 60px 0 60px;
+            }
+
+            .navbar {
+                padding: 0 60px;
+            }
+
+            .hero-section {
+                gap: 40px;
+            }
+
+            .hero-image {
+                width: 350px;
+                height: 250px;
+            }
+
+            .projects-grid {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 80px 40px 0 40px;
+            }
+
+            .navbar {
+                padding: 0 40px;
+            }
+
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+                min-height: auto;
+            }
+
+            .hero-image {
+                width: 100%;
+                max-width: 400px;
+                height: 250px;
+            }
+
+            .main-heading {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .education-item {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .education-item.reverse {
+                flex-direction: column;
+            }
+
+            .education-image {
+                width: 100%;
+                max-width: 400px;
+                height: 200px;
+                margin: 0 auto;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 80px 20px 0 20px;
+            }
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .main-heading {
+                font-size: 28px;
+            }
+
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 40px;
+            }
+
+            .description, .tagline {
+                font-size: 18px;
+            }
+
+            .university-header, .location {
+                font-size: 20px;
+            }
+
+            .degree, .specialization {
+                font-size: 16px;
+            }
+
+            .project-name {
+                font-size: 20px;
+            }
+
+            .project-description {
+                font-size: 14px;
+            }
+
+            .skill-tag {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+
+            .github-button {
+                font-size: 14px;
+                padding: 6px 16px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .projects-subtitle {
+                font-size: 16px;
+            }
+
+            .contributed-subtitle {
+                font-size: 20px;
+            }
+
+            .contribution-title {
+                font-size: 18px;
+            }
+
+            .contribution-detail {
+                font-size: 14px;
+            }
+        }
+
+        /* Contact Section */
+        .contact-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 0;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .contact-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            color: #2c2c2c;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 60px;
+        }
+
+        .contact-info {
+            margin-bottom: 30px;
+        }
+
+        .contact-label {
+            font-family: 'Cardo', serif;
+            font-size: 20px;
+            color: #2c2c2c;
+            margin-bottom: 12px;
+        }
+
+        .email-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .email-icon {
+            flex-shrink: 0;
+            width: 22px;
+            height: 17px;
+        }
+
+        .email-link {
+            font-family: 'Cardo', serif;
+            font-size: 20px;
+            color: #4a4a4a;
+            font-style: italic;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .email-link:hover {
+            color: #8B7EC8;
+        }
+
+        /* Responsive updates for contact section */
+        @media (max-width: 1024px) {
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .email-container {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .contact-label {
+                font-size: 18px;
+            }
+
+            .email-link {
+                font-size: 16px;
+            }
+
+            .email-icon {
+                width: 18px;
+                height: 14px;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 0;
+            width: calc(100% + 160px);
+            margin-left: -80px;
+        }
+
+        .footer-text {
+            font-family: 'Cardo', serif;
+            font-size: 14px;
+            color: #4a4a4a;
+            margin: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .footer {
+                width: calc(100% + 120px);
+                margin-left: -60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                width: calc(100% + 80px);
+                margin-left: -40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer {
+                width: calc(100% + 40px);
+                margin-left: -20px;
+            }
+
+            .footer-text {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
-<body onload="zoom()">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#home">Anushka Bhatnagar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item">
-                        <div class="mode-toggle">
-                            <input type="checkbox" id="dark-mode-toggle" class="dark-mode-checkbox">
-                            <label for="dark-mode-toggle" class="dark-mode-label">
-                                <i class="fas fa-sun"></i>
-                                <i class="fas fa-moon"></i>
-                                <span class="ball"></span>
-                            </label>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-md-10 mx-auto text-center">
-                    <h1 class="name">Anushka Bhatnagar</h1>
-                    <div class="role-container">
-                        <p class="role">Software and Full-Stack Developer</p>
-                        <p class="tagline">Innovating Through Design</p>
-                    </div>
-                </div>
-            </div>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="main-heading">
+                Hey, I'm<br>
+                <span class="name">Anushka Bhatnagar</span>
+            </h1>
+            
+            <p class="description">I'm a Software and Full-Stack Developer</p>
+            
+            <p class="tagline">I Innovate through Design</p>
         </div>
-        <div class="scroll-down">
-            <a href="#about"><i class="fas fa-chevron-down"></i></a>
+        <div class="hero-image">
+            <img src="images/Anushka.jpg" alt="">
         </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="section-title">
-                        <h2>About Me</h2>
-                    </div>
-                    <p class="about-text">
-                        I'm a graduate computer science student at Columbia University, passionate about innovation and design in technology. I'm interested in human-computer interaction, building accessible and inclusive UI/UX design, and web development. I'm looking for opportunities in the domains of full-stack development, technology management, and consulting.
-                    </p>
+    </div>
+
+    <div class="about-section">
+        <p class="about-text">I'm a graduate computer science student at Columbia University, passionate about innovation and design in technology.</p>
+        <p class="about-text">I'm interested in human-computer interaction, building accessible and inclusive UI/UX design, and web development.</p>
+        
+        <div class="skills-section">
+            <h3 class="skills-title">Skills:</h3>
+            <p class="skills-text"><strong>Languages:</strong> Java, C, C++, Python, R, MATLAB, HTML, CSS, JavaScript, React, Angular, SQL, Flask, JSON, jQuery</p>
+            <p class="skills-text"><strong>Tools:</strong> Git, GitHub, Google Cloud, Microsoft Azure, AWS, MySQL, PostgreSQL, SQLAlchemy, Power BI, Figma</p>
+        </div>
+    </div>
+
+    <div class="education-section">
+        <h2 class="section-title">EDUCATION</h2>
+        
+        <div class="education-item">
+            <div class="education-content">
+                <div class="university-header">Columbia University, 2024 - 2025</div>
+                <div class="location">New York City, United States</div>
+                <div class="degree">Master of Science in Computer Science</div>
+                <div class="specialization">Personalized Track Focused on User-Centered Design and Human-Computer Interaction</div>
+            </div>
+            <div class="education-image">
+                <img src="images/columbia.jpeg" alt="Columbia University">
+            </div>
+        </div>
+
+        <div class="education-item reverse">
+            <div class="education-content">
+                <div class="university-header">NMIMS University, 2020 - 2024</div>
+                <div class="location">Mumbai, India</div>
+                <div class="degree">Bachelor of Technology in Computer Science and Business Systems</div>
+                <div class="degree">Gold Medallist, Batch Rank 1</div>
+            </div>
+            <div class="education-image">
+                <img src="images/nmims.jpeg" alt="NMIMS University">
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="work-section">
+        <h2 class="section-title">WORK</h2>
+        
+        <div class="work-item">
+            <div class="work-content">
+                <div class="work-header">
+                    <span>Computational Design Lab, Columbia University</span>
+                    <span class="work-location">New York, US</span>
                 </div>
-                <div class="col-md-6">
-                    <!-- Future content -->
+                <div class="work-subheader">
+                    <span>Graduate Research Assistant</span>
+                    <span class="work-date">May 2025 - Present</span>
+                </div>
+                <div class="work-description">
+                    <ul>
+                        <li>Creating frameworks for surfacing developer controls over AI-generated asynchronous interactive system parameters</li>
+                        <li>Designing visual interfaces for adjusting algorithmic interaction flows in code, exposing tools for AI-generated logic</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects-section">
-        <div class="container">
-            <div class="section-title text-center">
-                <h2>Projects</h2>
-            </div>
-            <div class="row mb-5">
-                <div class="col-md-4 mb-4">
-                    <div class="project-card">
-                        <img src="Images/Wave.png" class="card-img-top" alt="Wave Image">
-                        <div class="project-info">
-                            <h3>Wave</h3>
-                            <p>A smart journaling application which offers emotion prediction and analysis for your daily journal entries.</p>
-                            <div class="project-tags">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JavaScript</span>
-                            </div>
-                            <a href="https://github.com/AnushkaBhatnagar/Wave" target="_blank" class="btn btn-outline-primary">GitHub</a>
-                        </div>
-                    </div>
+        <div class="work-item">
+            <div class="work-content">
+                <div class="work-header">
+                    <span>Mayah Design</span>
+                    <span class="work-location">New York, US</span>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="project-card">
-                        <img src="Images/MeaLit.png" class="card-img-top" alt="MeaLit Image">
-                        <div class="project-info">
-                            <h3>MeaLit</h3>
-                            <p>A dynamic food recommendation engine offering personalized restaurant and recipe suggestions based on your preferences.</p>
-                            <div class="project-tags">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JavaScript</span>
-                            </div>
-                            <a href="https://github.com/AnushkaBhatnagar/MeaLit-2.0" target="_blank" class="btn btn-outline-primary">GitHub</a>
-                        </div>
-                    </div>
+                <div class="work-subheader">
+                    <span>Software Engineering Intern</span>
+                    <span class="work-date">Jan 2025 - July 2025</span>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="project-card">
-                        <img src="Images/Hype.jpg" class="card-img-top" alt="Hype Image">
-                        <div class="project-info">
-                            <h3>Hype</h3>
-                            <p>A one-stop platform for college clubs and committees that keeps students in loop with the latest updates, events, and parties.</p>
-                            <div class="project-tags">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JavaScript</span>
-                            </div>
-                            <a href="https://github.com/AnushkaBhatnagar/Hype" target="_blank" class="btn btn-outline-primary">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="project-card">
-                        <img src="Images/ZigZag.png" class="card-img-top" alt="ZigZag Image">
-                        <div class="project-info">
-                            <h3>ZigZag</h3>
-                            <p>An ultimate guide for college students in Mumbai for seeking out the best tourist attractions, cafes, restaurants, and fabulous shopping destinations.</p>
-                            <div class="project-tags">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JavaScript</span>
-                            </div>
-                            <a href="https://github.com/AnushkaBhatnagar/ZigZag" target="_blank" class="btn btn-outline-primary">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="project-card">
-                        <img src="Images/Artisano.jpg" class="card-img-top" alt="Artisano Image">
-                        <div class="project-info">
-                            <h3>Artisano</h3>
-                            <p>A platform to discover unique art pieces, explore the works of talented artists, and experience the beauty of gallery culture.</p>
-                            <div class="project-tags">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JavaScript</span>
-                            </div>
-                            <a href="https://github.com/AnushkaBhatnagar/Artisano" target="_blank" class="btn btn-outline-primary">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="project-card">
-                        <img src="Images/Jobifyr.jpg" class="card-img-top" alt="Jobifyr Image">
-                        <div class="project-info">
-                            <h3>Jobifyr</h3>
-                            <p>A centralized hub for job search, career development resources and employer-university collaboration, bridging the gap between students, employers and universities.</p>
-                            <div class="project-tags">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JavaScript</span>
-                            </div>
-                            <a href="https://github.com/AnushkaBhatnagar/Jobifyr" target="_blank" class="btn btn-outline-primary">GitHub</a>
-                        </div>
-                    </div>
+                <div class="work-description">
+                    <ul>
+                        <li>Built the full-stack for an interior design start-up as part of Columbia Build Lab, with React, JavaScript and Flask</li>
+                        <li>Managed and secured the application on AWS EC2 infrastructure with S3, load balancers and Amazon Rekognition</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Publications Section -->
-    <section id="publications" class="publications-section">
-        <div class="container">
-            <div class="section-title text-center">
-                <h2>Publications</h2>
+        <div class="work-item">
+            <div class="work-content">
+                <div class="work-header">
+                    <span>Tata Consultancy Services (TCS)</span>
+                    <span class="work-location">Lucknow, IN</span>
+                </div>
+                <div class="work-subheader">
+                    <span>Information Technology Intern</span>
+                    <span class="work-date">May 2023 - Jul 2023</span>
+                </div>
+                <div class="work-description">
+                    <ul>
+                        <li>Developed dynamic web applications for TCS Events using Angular and NPM, streamlining management and enhancing engagement processes within the project.</li>
+                        <li>Collaborated on JSON Server integration for optimizing data storage and retrieval.</li>
+                    </ul>
+                </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-10">
-                    <div class="publication-card">
-                        <div class="publication-content">
-                            <h3 class="publication-title">Emotion Analysis in Smart Journals: Bridging ML and NLP for Holistic Mental Health Monitoring</h3>
-                            <p class="publication-authors">
-                                <span class="fw-bold">Authors:</span> Soumya Vaidya, Anushka Bhatnagar, Shobhit Patel, Manisha Tiwari, Pragati Khare</p>
-                            <p class="publication-authors">
-                                <span class="fw-bold">Conference:</span> International Conference on Emerging Trends in Networks and Computer Communications (ETNCC), 2024
-                            </p>
-                            <p class="publication-authors">
-                                <span class="fw-bold">Publication:</span> IEEE Xplore
-                            </p>
-                            <div class="publication-links">
-                                <a href="https://ieeexplore.ieee.org/abstract/document/10767437" target="_blank" class="publication-link">
-                                    <i class="fas fa-file-pdf"></i>
-                                    <span>Paper</span>
-                                </a>
-                            </div>
-                        </div>
+        </div>
+    </div>
+
+    <div class="projects-section">
+        <h2 class="section-title">MY PROJECTS</h2>
+        <p class="projects-subtitle">
+            <a href="#" class="view-all-link">View all projects on GitHub →</a>
+        </p>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/Wave.png" alt="Wave Project">
+                </div>
+                <div class="project-info">
+                    <div class="project-name">
+                        <span>Wave</span>
+                        <a href="#" class="github-link">GitHub →</a>
+                    </div>
+                    <p class="project-description">A smart journaling application which offers emotion prediction and analysis for your daily journal entries.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-10">
-                    <div class="publication-card">
-                        <div class="publication-content">
-                            <h3 class="publication-title">
-                                Emotion Analysis and Trend Tracking in Smart Journals: A Review
-                            </h3>
-                            <p class="publication-authors">
-                                <span class="fw-bold">Authors:</span> Anushka Bhatnagar, Soumya Vaidya, Shobhit Patel, Manisha Tiwari, Pragati Khare</p>
-                            <p class="publication-authors">
-                                <span class="fw-bold">Conference:</span> International Conference on Innovative Computing & Communication (ICICC) 2024
-                            </p>
-                            <p class="publication-authors">
-                                <span class="fw-bold">Publication:</span> Elsevier SSRN
-                            </p>
-                            <div class="publication-links">
-                                <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4993831" target="_blank" class="publication-link">
-                                    <i class="fas fa-file-pdf"></i>
-                                    <span>Paper</span>
-                                </a>
-                            </div>
-                        </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/MeaLit.png" alt="MeaLit Project">
+                </div>
+                <div class="project-info">
+                    <div class="project-name">
+                        <span>MeaLit</span>
+                        <a href="#" class="github-link">GitHub →</a>
+                    </div>
+                    <p class="project-description">A dynamic food recommendation engine offering personalized restaurant and recipe suggestions based on your preferences.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/Artisano.jpg" alt="Artisano Project">
+                </div>
+                <div class="project-info">
+                    <div class="project-name">
+                        <span>Artisano</span>
+                        <a href="#" class="github-link">GitHub →</a>
+                    </div>
+                    <p class="project-description">A platform to discover unique art pieces, explore the works of talented artists, and experience the beauty of gallery culture.</p>
+                    <div class="project-skills">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="section-title text-center">
-                <h2>Get In Touch</h2>
+        <h3 class="contributed-subtitle">Contributed To:</h3>
+        
+        <div class="contribution-card">
+            <div class="contribution-image">
+                <img src="images/logomotion.gif" alt="LogoMotion Project">
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-8 text-center">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <p>anushka.bhatnagar@columbia.com</p>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fab fa-linkedin"></i>
-                            <p><a href="https://linkedin.com/in/anushkabhatnagar" target="_blank">LinkedIn</a></p>
-                        </div>
-                    </div>
+            <div class="contribution-content">
+                <div class="contribution-title">
+                    <span>LogoMotion</span>
+                    <a href="#" class="website-link">Website →</a>
+                </div>
+                <div class="mentored-by">
+                    <strong>Mentored By:</strong> <a href="#" class="mentor-link">Professor Lydia Chilton</a>, <a href="#" class="mentor-link">Vivian Liu</a>
+                </div>
+                <div class="contribution-details">
+                    AI-powered visually-grounded code synthesis for creating and editing semantically meaningful animations
                 </div>
             </div>
         </div>
-    </section>
+         <div class="research-section">
+        <h2 class="section-title">RESEARCH PUBLICATIONS</h2>
+        
+        <div class="publication-card">
+            <div class="publication-content">
+                <div class="publication-title">
+                    <span>Emotion Analysis in Smart Journals: Bridging ML and NLP for Holistic Mental Health Monitoring</span>
+                    <a href="#" class="paper-link">Paper →</a>
+                </div>
+                <div class="publication-authors">
+                    <strong>Authors:</strong> Soumya Vaidya, Anushka Bhatnagar, Shobhit Patel, Manisha Tiwari, Pragati Khare
+                </div>
+                <div class="publication-details">
+                    <strong>Conference:</strong> International Conference on Emerging Trends in Networks and Computer Communications (ETNCC), 2024
+                </div>
+                <div class="publication-details">
+                    <strong>Publication:</strong> IEEE Xplore
+                </div>
+            </div>
+        </div>
 
-    <!-- Footer -->
+        <div class="publication-card">
+            <div class="publication-content">
+                <div class="publication-title">
+                    <span>Emotion Analysis and Trend Tracking in Smart Journals: A Review</span>
+                    <a href="#" class="paper-link">Paper →</a>
+                </div>
+                <div class="publication-authors">
+                    <strong>Authors:</strong> Anushka Bhatnagar, Soumya Vaidya, Shobhit Patel, Manisha Tiwari, Pragati Khare
+                </div>
+                <div class="publication-details">
+                    <strong>Conference:</strong> International Conference on Innovative Computing & Communication (ICICC) 2024
+                </div>
+                <div class="publication-details">
+                    <strong>Publication:</strong> Elsevier SSRN
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-section" id="contact">
+        <h2 class="section-title">LET'S WORK TOGETHER</h2>
+        
+        <div class="contact-info">
+            <div class="contact-label">Email</div>
+            <div class="email-container">
+                <svg class="email-icon" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 0H2C0.9 0 0.01 0.9 0.01 2L0 14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM18 4L10 9L2 4V2L10 7L18 2V4Z" fill="#4a4a4a"/>
+                </svg>
+                <a href="mailto:anushka.bhatnagar@columbia.edu" class="email-link">anushka.bhatnagar@columbia.edu</a>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-label">LinkedIn</div>
+            <div class="email-container">
+                <svg class="email-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.447 20.452H16.893V14.883C16.893 13.555 16.866 11.846 15.041 11.846C13.188 11.846 12.905 13.291 12.905 14.785V20.452H9.351V9H12.765V10.561H12.811C13.288 9.661 14.448 8.711 16.181 8.711C19.782 8.711 20.448 11.081 20.448 14.166V20.452H20.447ZM5.337 7.433C4.193 7.433 3.274 6.507 3.274 5.366C3.274 4.224 4.194 3.299 5.337 3.299C6.477 3.299 7.401 4.224 7.401 5.366C7.401 6.507 6.476 7.433 5.337 7.433ZM7.119 20.452H3.555V9H7.119V20.452ZM22.225 0H1.771C0.792 0 0 0.774 0 1.729V22.271C0 23.227 0.792 24 1.771 24H22.222C23.2 24 24 23.227 24 22.271V1.729C24 0.774 23.2 0 22.222 0H22.225Z" fill="#4a4a4a"/>
+                </svg>
+                <a href="#" class="email-link">linkedin.com/in/anushkabhatnagar</a>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
-        <div class="container text-center">
-            <p>Made by Anushka Bhatnagar. Last Updated March 2025.</p>
-        </div>
+        <p class="footer-text">Made by Anushka Bhatnagar. Last Updated August 2025.</p>
     </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <!-- Custom JS -->
-    <script src="script.js"></script>
 </body>
 </html>
