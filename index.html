@@ -115,7 +115,7 @@
         }
 
         .education-section {
-            margin-top: 80px;
+            margin-top: 60px;
             max-width: 1200px;
         }
 
@@ -397,6 +397,43 @@
             align-items: flex-start;
             flex-wrap: wrap;
             gap: 6px;
+        }
+
+        .company-link {
+            color: #2c2c2c;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .company-link:hover {
+            color: #8B7EC8;
+        }
+
+        .company-arrow {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        .founder-line {
+            font-family: 'Cardo', serif;
+            font-size: 13px;
+            color: #6b7280;
+            font-style: italic;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .founder-link {
+            color: #8B7EC8;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .founder-link:hover {
+            opacity: 0.7;
         }
 
         .work-location {
@@ -708,6 +745,26 @@
             flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 20px;
+        }
+
+        .contribution-bullet {
+            font-family: 'Cardo', serif;
+            font-size: 14px;
+            color: #2c2c2c;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .contribution-bullet:before {
+            content: "▸";
+            color: #8B7EC8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 14px;
         }
 
         /* Responsive Design */
@@ -1075,14 +1132,14 @@
                     <span class="work-location">New York, US</span>
                 </div>
                 <div class="work-subheader">
-                    <span>Graduate Research Assistant</span>
+                    <span class="job-title">Graduate Research Assistant</span>
                     <span class="work-date">May 2025 - Present</span>
                 </div>
+                <div class="founder-line">
+                    Working under <a href="https://www.cs.columbia.edu/~chilton/chilton.html" target="_blank" class="founder-link">Professor Lydia Chilton</a> as the PI, mentored by <a href="https://vivian-liu.com/" target="_blank" class="founder-link">Vivian Liu</a>
+                </div>
                 <div class="work-description">
-                    <ul>
-                        <li>Creating frameworks for surfacing developer controls over AI-generated asynchronous interactive system parameters</li>
-                        <li>Designing visual interfaces for adjusting algorithmic interaction flows in code, exposing tools for AI-generated logic</li>
-                    </ul>
+                    Designing frameworks and visual interfaces that expose developer controls over AI-generated asynchronous interaction parameters and algorithmic logic flows.
                 </div>
             </div>
         </div>
@@ -1090,18 +1147,21 @@
         <div class="work-item">
             <div class="work-content">
                 <div class="work-header">
-                    <span>Mayah Design</span>
+                    <a href="https://www.mayahdesign.co/" target="_blank" class="company-link">
+                        <span>Mayah Design</span>
+                        <span class="company-arrow">↗</span>
+                    </a>
                     <span class="work-location">New York, US</span>
                 </div>
                 <div class="work-subheader">
-                    <span>Software Engineering Intern</span>
+                    <span class="job-title">Software Engineering Intern</span>
                     <span class="work-date">Jan 2025 - July 2025</span>
                 </div>
+                <div class="founder-line">
+                    Reported directly to the Founder, <a href="https://www.linkedin.com/in/alexis-chestnov/" target="_blank" class="founder-link">Alexis Haber</a>, as a founding engineer
+                </div>
                 <div class="work-description">
-                    <ul>
-                        <li>Built the full-stack for an interior design start-up as part of Columbia Build Lab, with React, JavaScript and Flask</li>
-                        <li>Managed and secured the application on AWS EC2 infrastructure with S3, load balancers and Amazon Rekognition</li>
-                    </ul>
+                    Built the full-stack for the application using React, JavaScript, and Flask, performing API integrations, designing the database schema, and managing users' information; deployed and secured on AWS through EC2, S3, load balancers, Cognito, Rekognition, and RDS.
                 </div>
             </div>
         </div>
@@ -1109,18 +1169,18 @@
         <div class="work-item">
             <div class="work-content">
                 <div class="work-header">
-                    <span>Tata Consultancy Services (TCS)</span>
+                    <a href="https://www.tcs.com/" target="_blank" class="company-link">
+                        <span>Tata Consultancy Services (TCS)</span>
+                        <span class="company-arrow">↗</span>
+                    </a>
                     <span class="work-location">Lucknow, IN</span>
                 </div>
                 <div class="work-subheader">
-                    <span>Information Technology Intern</span>
+                    <span class="job-title">Information Technology Intern</span>
                     <span class="work-date">May 2023 - Jul 2023</span>
                 </div>
                 <div class="work-description">
-                    <ul>
-                        <li>Developed dynamic web applications for TCS Events using Angular and NPM, streamlining management and enhancing engagement processes within the project.</li>
-                        <li>Collaborated on JSON Server integration for optimizing data storage and retrieval.</li>
-                    </ul>
+                    Developed dynamic web applications for TCS Events using Angular and NPM, integrating JSON Server to optimize data storage, retrieval, and engagement processes.
                 </div>
             </div>
         </div>
@@ -1129,7 +1189,7 @@
     <div class="projects-section">
         <h2 class="section-title">MY PROJECTS</h2>
         <p class="projects-subtitle">
-            <a href="#" class="view-all-link">View all projects on GitHub →</a>
+            <a href="https://github.com/AnushkaBhatnagar/" target="_blank" class="view-all-link">View All Projects on GitHub →</a>
         </p>
         
         <div class="projects-grid">
@@ -1140,7 +1200,7 @@
                 <div class="project-info">
                     <div class="project-name">
                         <span>Wave</span>
-                        <a href="#" class="github-link">GitHub →</a>
+                        <a href="https://github.com/AnushkaBhatnagar/Wave" target="_blank" class="github-link">GitHub →</a>
                     </div>
                     <p class="project-description">A smart journaling application which offers emotion prediction and analysis for your daily journal entries.</p>
                     <div class="project-skills">
@@ -1158,7 +1218,7 @@
                 <div class="project-info">
                     <div class="project-name">
                         <span>MeaLit</span>
-                        <a href="#" class="github-link">GitHub →</a>
+                        <a href="https://github.com/AnushkaBhatnagar/MeaLit-2.0" target="_blank" class="github-link">GitHub →</a>
                     </div>
                     <p class="project-description">A dynamic food recommendation engine offering personalized restaurant and recipe suggestions based on your preferences.</p>
                     <div class="project-skills">
@@ -1176,7 +1236,7 @@
                 <div class="project-info">
                     <div class="project-name">
                         <span>Artisano</span>
-                        <a href="#" class="github-link">GitHub →</a>
+                        <a href="https://github.com/AnushkaBhatnagar/Artisano" target="_blank" class="github-link">GitHub →</a>
                     </div>
                     <p class="project-description">A platform to discover unique art pieces, explore the works of talented artists, and experience the beauty of gallery culture.</p>
                     <div class="project-skills">
@@ -1196,13 +1256,16 @@
             <div class="contribution-content">
                 <div class="contribution-title">
                     <span>LogoMotion</span>
-                    <a href="#" class="website-link">Website →</a>
+                    <a href="https://logomotion.vercel.app/" target="_blank" class="website-link">Website →</a>
                 </div>
                 <div class="mentored-by">
-                    <strong>Mentored By:</strong> <a href="#" class="mentor-link">Professor Lydia Chilton</a>, <a href="#" class="mentor-link">Vivian Liu</a>
+                    <strong>Mentored By:</strong> <a href="https://www.cs.columbia.edu/~chilton/chilton.html" target="_blank" class="mentor-link">Professor Lydia Chilton</a>, <a href="https://vivian-liu.com/" target="_blank" class="mentor-link">Vivian Liu</a>
                 </div>
                 <div class="contribution-details">
                     AI-powered visually-grounded code synthesis for creating and editing semantically meaningful animations
+                </div>
+                <div class="contribution-bullet">
+                    Integrated Gen-AI and Vision Language Models with an interactive React GUI through prompt engineering for optimized outputs and semantic animations
                 </div>
             </div>
         </div>
@@ -1213,7 +1276,7 @@
             <div class="publication-content">
                 <div class="publication-title">
                     <span>Emotion Analysis in Smart Journals: Bridging ML and NLP for Holistic Mental Health Monitoring</span>
-                    <a href="#" class="paper-link">Paper →</a>
+                    <a href="https://ieeexplore.ieee.org/abstract/document/10767437" target="_blank" class="paper-link">Paper →</a>
                 </div>
                 <div class="publication-authors">
                     <strong>Authors:</strong> Soumya Vaidya, Anushka Bhatnagar, Shobhit Patel, Manisha Tiwari, Pragati Khare
@@ -1231,7 +1294,7 @@
             <div class="publication-content">
                 <div class="publication-title">
                     <span>Emotion Analysis and Trend Tracking in Smart Journals: A Review</span>
-                    <a href="#" class="paper-link">Paper →</a>
+                    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4993831" target="_blank" class="paper-link">Paper →</a>
                 </div>
                 <div class="publication-authors">
                     <strong>Authors:</strong> Anushka Bhatnagar, Soumya Vaidya, Shobhit Patel, Manisha Tiwari, Pragati Khare
@@ -1265,7 +1328,17 @@
                 <svg class="email-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20.447 20.452H16.893V14.883C16.893 13.555 16.866 11.846 15.041 11.846C13.188 11.846 12.905 13.291 12.905 14.785V20.452H9.351V9H12.765V10.561H12.811C13.288 9.661 14.448 8.711 16.181 8.711C19.782 8.711 20.448 11.081 20.448 14.166V20.452H20.447ZM5.337 7.433C4.193 7.433 3.274 6.507 3.274 5.366C3.274 4.224 4.194 3.299 5.337 3.299C6.477 3.299 7.401 4.224 7.401 5.366C7.401 6.507 6.476 7.433 5.337 7.433ZM7.119 20.452H3.555V9H7.119V20.452ZM22.225 0H1.771C0.792 0 0 0.774 0 1.729V22.271C0 23.227 0.792 24 1.771 24H22.222C23.2 24 24 23.227 24 22.271V1.729C24 0.774 23.2 0 22.222 0H22.225Z" fill="#4a4a4a"/>
                 </svg>
-                <a href="#" class="email-link">linkedin.com/in/anushkabhatnagar</a>
+                <a href="https://linkedin.com/in/anushkabhatnagar" target="_blank" class="email-link">linkedin.com/in/anushkabhatnagar</a>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-label">GitHub</div>
+            <div class="email-container">
+                <svg class="email-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12C0 17.31 3.435 21.795 8.205 23.385C8.805 23.49 9.03 23.13 9.03 22.815C9.03 22.53 9.015 21.585 9.015 20.58C6 21.135 5.22 19.845 4.98 19.17C4.845 18.825 4.26 17.76 3.75 17.475C3.33 17.25 2.73 16.695 3.735 16.68C4.68 16.665 5.355 17.55 5.58 17.91C6.66 19.725 8.385 19.215 9.075 18.9C9.18 18.12 9.495 17.595 9.84 17.295C7.17 16.995 4.38 15.96 4.38 11.37C4.38 10.065 4.845 8.985 5.61 8.145C5.49 7.845 5.07 6.615 5.73 4.965C5.73 4.965 6.735 4.65 9.03 6.195C9.99 5.925 11.01 5.79 12.03 5.79C13.05 5.79 14.07 5.925 15.03 6.195C17.325 4.635 18.33 4.965 18.33 4.965C18.99 6.615 18.57 7.845 18.45 8.145C19.215 8.985 19.68 10.05 19.68 11.37C19.68 15.975 16.875 16.995 14.205 17.295C14.64 17.67 15.015 18.39 15.015 19.515C15.015 21.12 15 22.41 15 22.815C15 23.13 15.225 23.505 15.825 23.385C18.2072 22.5808 20.2773 21.0498 21.7438 19.0074C23.2103 16.9649 23.9994 14.5143 24 12C24 5.37 18.63 0 12 0Z" fill="#4a4a4a"/>
+                </svg>
+                <a href="https://github.com/AnushkaBhatnagar" target="_blank" class="email-link">github.com/AnushkaBhatnagar</a>
             </div>
         </div>
     </div>
