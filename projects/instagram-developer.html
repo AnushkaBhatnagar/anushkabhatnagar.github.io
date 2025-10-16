@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: stretch;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            zoom: 0.7;
+        }
+
+        .phone-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .state-panel {
+            right: 0;
+            top: 0;
+            width: 450px;
+            height: 135vh;
+            background: rgba(20, 20, 20, 0.95);
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .stage-segment {
+            flex: 1;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+        }
+        
+        .segment-content {
+            display: flex;
+            gap: 12px;
+            flex: 1;
+        }
+        
+        .logging-column {
+            flex: 0 0 160px;
+        }
+        
+        .params-column {
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .param-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+            padding: 8px;
+            margin-bottom: 8px;
+            font-size: 11px;
+            line-height: 1.4;
+            position: relative;
+        }
+        
+        .param-name {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: bold;
+            margin-bottom: 3px;
+            font-size: 12px;
+        }
+        
+        .param-id, .param-state, .param-mod {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 10px;
+        }
+        
+        .param-id {
+            color: rgba(100, 200, 255, 0.8);
+            position: relative;
+        }
+        
+        .copy-icon {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: all 0.2s;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            z-index: 10;
+        }
+        
+        .copy-icon:hover {
+            opacity: 1;
+            color: rgba(100, 200, 255, 1);
+            transform: scale(1.15);
+        }
+        
+        .copy-icon.copied {
+            color: #2ecc71;
+        }
+
+        .stage-segment:last-child {
+            border-bottom: none;
+        }
+
+        .stage-segment.active {
+            opacity: 1;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stage-segment.stage-0 {
+            background: linear-gradient(135deg, rgba(100, 100, 100, 0.15) 0%, rgba(80, 80, 80, 0.15) 100%);
+        }
+
+        .stage-segment.stage-0.active {
+            background: linear-gradient(135deg, rgba(100, 100, 100, 0.3) 0%, rgba(80, 80, 80, 0.3) 100%);
+            border-color: rgba(100, 100, 100, 0.6);
+            box-shadow: inset 0 0 30px rgba(100, 100, 100, 0.3);
+        }
+
+        .stage-segment.stage-1 {
+            background: linear-gradient(135deg, rgba(46, 213, 115, 0.15) 0%, rgba(0, 184, 148, 0.15) 100%);
+        }
+
+        .stage-segment.stage-1.active {
+            background: linear-gradient(135deg, rgba(46, 213, 115, 0.3) 0%, rgba(0, 184, 148, 0.3) 100%);
+            border-color: rgba(46, 213, 115, 0.6);
+            box-shadow: inset 0 0 30px rgba(46, 213, 115, 0.3);
+        }
+
+        .stage-segment.stage-2 {
+            background: linear-gradient(135deg, rgba(255, 159, 26, 0.15) 0%, rgba(255, 195, 18, 0.15) 100%);
+        }
+
+        .stage-segment.stage-2.active {
+            background: linear-gradient(135deg, rgba(255, 159, 26, 0.3) 0%, rgba(255, 195, 18, 0.3) 100%);
+            border-color: rgba(255, 159, 26, 0.6);
+            box-shadow: inset 0 0 30px rgba(255, 159, 26, 0.3);
+        }
+
+        .stage-segment.stage-3 {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.15) 0%, rgba(235, 77, 75, 0.15) 100%);
+        }
+
+        .stage-segment.stage-3.active {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.3) 0%, rgba(235, 77, 75, 0.3) 100%);
+            border-color: rgba(255, 107, 53, 0.6);
+            box-shadow: inset 0 0 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .stage-segment.stage-4 {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.2) 0%, rgba(200, 0, 0, 0.2) 100%);
+        }
+
+        .stage-segment.stage-4.active {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.4) 0%, rgba(200, 0, 0, 0.4) 100%);
+            border-color: rgba(139, 0, 0, 0.8);
+            box-shadow: inset 0 0 30px rgba(139, 0, 0, 0.5);
+            animation: hellPulse 2s infinite;
+        }
+
+        .stage-segment.stage-5 {
+            background: linear-gradient(135deg, rgba(80, 0, 0, 0.2) 0%, rgba(120, 0, 0, 0.2) 100%);
+        }
+
+        .stage-segment.stage-5.active {
+            background: linear-gradient(135deg, rgba(80, 0, 0, 0.5) 0%, rgba(120, 0, 0, 0.5) 100%);
+            border-color: rgba(80, 0, 0, 0.9);
+            box-shadow: inset 0 0 40px rgba(80, 0, 0, 0.7);
+            animation: trappedPulse 1.5s infinite;
+        }
+
+        .stage-header {
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .jump-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .jump-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .jump-button:active {
+            transform: scale(0.95);
+        }
+
+        .stage-range {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 10px;
+            margin-bottom: 8px;
+        }
+
+        .dots-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-content: flex-start;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            animation: dotAppear 0.3s ease-out;
+        }
+
+        .stage-0 .dot {
+            background: rgba(150, 150, 150, 0.8);
+            box-shadow: 0 0 4px rgba(150, 150, 150, 0.5);
+        }
+
+        .stage-1 .dot {
+            background: rgba(46, 213, 115, 0.8);
+            box-shadow: 0 0 5px rgba(46, 213, 115, 0.5);
+        }
+
+        .stage-2 .dot {
+            background: rgba(255, 159, 26, 0.8);
+            box-shadow: 0 0 5px rgba(255, 159, 26, 0.5);
+        }
+
+        .stage-3 .dot {
+            background: rgba(255, 107, 53, 0.8);
+            box-shadow: 0 0 5px rgba(255, 107, 53, 0.5);
+        }
+
+        .stage-4 .dot {
+            background: rgba(255, 0, 0, 0.8);
+            box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+        }
+
+        .stage-5 .dot {
+            background: rgba(139, 0, 0, 0.9);
+            box-shadow: 0 0 10px rgba(139, 0, 0, 0.7);
+        }
+
+        @keyframes dotAppear {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes hellPulse {
+            0%, 100% {
+                box-shadow: inset 0 0 30px rgba(139, 0, 0, 0.5);
+            }
+            50% {
+                box-shadow: inset 0 0 50px rgba(255, 0, 0, 0.7);
+            }
+        }
+
+        @keyframes trappedPulse {
+            0%, 100% {
+                box-shadow: inset 0 0 40px rgba(80, 0, 0, 0.7);
+            }
+            50% {
+                box-shadow: inset 0 0 60px rgba(120, 0, 0, 0.9);
+            }
+        }
+
+        .phone {
+            width: 375px;
+            height: 812px;
+            background: #000;
+            border-radius: 40px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .app-title {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .notification-counter {
+            background: #ff3333;
+            color: white;
+            border-radius: 15px;
+            padding: 5px 12px;
+            font-size: 14px;
+            font-weight: bold;
+            animation: pulse 1s infinite;
+        }
+
+        .content-area {
+            padding: 20px;
+            height: calc(100% - 120px);
+            overflow: hidden;
+        }
+
+        .notification {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            color: white;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .notification:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .notification.dark {
+            background: rgba(255, 0, 0, 0.2);
+            border-color: #ff3333;
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
+        }
+
+        .notification.hell {
+            background: rgba(139, 0, 0, 0.4);
+            border-color: #8B0000;
+            box-shadow: 0 0 30px rgba(139, 0, 0, 0.6);
+            animation: shake 0.5s infinite, slideIn 0.2s ease-out;
+        }
+
+        .notification.urgent {
+            background: linear-gradient(45deg, #ff4444, #cc0000);
+            border-color: #ff0000;
+            box-shadow: 0 0 25px rgba(255, 68, 68, 0.6);
+            animation: urgentPulse 1s infinite, slideIn 0.5s ease-out;
+        }
+
+        .notification.reward {
+            background: linear-gradient(45deg, #00ff88, #00cc44);
+            border-color: #00ff00;
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.6);
+            animation: celebration 0.8s ease-out, slideIn 0.5s ease-out;
+        }
+
+        .notification.mystery {
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+            border-color: #9b59b6;
+            box-shadow: 0 0 25px rgba(155, 89, 182, 0.6);
+            animation: mysteryPulse 1.5s infinite, slideIn 0.5s ease-out;
+        }
+
+        .notification.jackpot {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            border-color: #f39c12;
+            box-shadow: 0 0 30px rgba(243, 156, 18, 0.8);
+            animation: jackpotCelebration 1s ease-out, slideIn 0.5s ease-out;
+        }
+
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            float: left;
+            margin-right: 15px;
+            font-size: 18px;
+        }
+
+        .notification-text {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .notification-time {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .countdown-timer {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: #ff0000;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: bold;
+            animation: pulse 0.5s infinite;
+        }
+
+        .pulsing-glow {
+            animation: glowPulse 2s infinite;
+        }
+
+        .flood-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(139, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .flood-text {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            animation: flicker 0.5s infinite;
+        }
+
+        .start-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .start-button:hover {
+            transform: scale(1.05);
+        }
+
+        .warning-text {
+            color: #ff6b6b;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+
+        .escape-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: not-allowed;
+            transition: all 0.3s ease;
+            display: none;
+            opacity: 0.5;
+        }
+
+        .escape-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .escape-button.enabled {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        .escape-button.enabled:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .tap-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ff6b6b;
+            font-size: 14px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .notification.bouncing {
+            animation: bounce 0.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes urgentPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(255, 68, 68, 0.6); }
+            50% { transform: scale(1.02); box-shadow: 0 0 35px rgba(255, 68, 68, 0.9); }
+        }
+
+        @keyframes celebration {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes mysteryPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes jackpotCelebration {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(5deg); }
+            50% { transform: scale(1.1) rotate(-5deg); }
+            75% { transform: scale(1.15) rotate(3deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.8); }
+        }
+
+        .state-highlight {
+            border: 2px solid #2ecc71 !important;
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.6) !important;
+            animation: highlightPulse 2s infinite;
+        }
+
+        @keyframes highlightPulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(46, 204, 113, 0.6); }
+            50% { box-shadow: 0 0 25px rgba(46, 204, 113, 0.9); }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="phone">
+            <div class="screen">
+            <br><br>
+            
+            <div class="app-header">
+                <div class="app-title">Instagram</div>
+                <div class="notification-counter" id="counter">0</div>
+            </div>
+            
+            <div class="content-area" id="contentArea">
+                <div style="text-align: center; color: white; margin-top: 100px;">
+                    <button class="start-button" onclick="startHell()">Start</button>
+                </div>
+            </div>
+            
+            <div class="flood-overlay" id="floodOverlay">
+                <div class="flood-text">
+                    YOU DON'T EXIST<br>
+                    WHEN NOBODY'S<br>
+                    WATCHING
+                </div>
+            </div>
+
+            <button class="escape-button" id="escapeButton" onclick="tryEscape()">Turn Off Notifications (Disabled)</button>
+            <div class="tap-counter" id="tapCounter">Taps: 0</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="state-panel">
+        <div class="stage-segment stage-0 active" id="state0">
+            <div class="stage-header">
+                State 0: Idle
+                <button class="jump-button" onclick="jumpToState(0)">Jump</button>
+            </div>
+            <div class="stage-range">Before Start</div>
+            <div class="segment-content">
+                <div class="logging-column">
+                    <div class="dots-container" id="state0Dots"></div>
+                </div>
+                <div class="params-column">
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('.start-button')" title="Copy HTML">⎘</span>
+                        <div class="param-name">Start Button</div>
+                        <div class="param-id">ID/Class: .start-button</div>
+                        <div class="param-state">State: Visible</div>
+                        <div class="param-mod">Fn: startHell()</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stage-segment stage-1" id="state1">
+            <div class="stage-header">
+                State 1: Positive
+                <button class="jump-button" onclick="jumpToState(1)">Jump</button>
+            </div>
+            <div class="stage-range">0-15 notifications</div>
+            <div class="segment-content">
+                <div class="logging-column">
+                    <div class="dots-container" id="state1Dots"></div>
+                </div>
+                <div class="params-column">
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('.notification')" title="Copy HTML">⎘</span>
+                        <div class="param-name">Notifications</div>
+                        <div class="param-id">ID/Class: .notification</div>
+                        <div class="param-state">Source: positiveNotifications[]</div>
+                        <div class="param-mod">Mod: Content, frequency</div>
+                    </div>
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('notificationSpeed')" title="Copy value">⎘</span>
+                        <div class="param-name">Notif Speed</div>
+                        <div class="param-id">ID/Class: notificationSpeed</div>
+                        <div class="param-state">Value: 800ms</div>
+                        <div class="param-mod">Mod: Timing value</div>
+                    </div>
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('#escapeButton')" title="Copy HTML">⎘</span>
+                        <div class="param-name">Escape Button</div>
+                        <div class="param-id">ID/Class: #escapeButton</div>
+                        <div class="param-state">State: Disabled</div>
+                        <div class="param-mod">Mod: Enable state</div>
+                    </div>
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('#tapCounter')" title="Copy HTML">⎘</span>
+                        <div class="param-name">Tap Counter</div>
+                        <div class="param-id">ID/Class: #tapCounter</div>
+                        <div class="param-state">State: Visible</div>
+                        <div class="param-mod">Mod: Display, value</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stage-segment stage-2" id="state2">
+            <div class="stage-header">
+                State 2: Addictive
+                <button class="jump-button" onclick="jumpToState(2)">Jump</button>
+            </div>
+            <div class="stage-range">15-50 notifications</div>
+            <div class="segment-content">
+                <div class="logging-column">
+                    <div class="dots-container" id="state2Dots"></div>
+                </div>
+                <div class="params-column">
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('.notification')" title="Copy HTML">⎘</span>
+                        <div class="param-name">Notifications</div>
+                        <div class="param-id">ID/Class: .notification</div>
+                        <div class="param-state">Types: urgent, mystery, FOMO, guilt</div>
+                        <div class="param-mod">Mod: Type distribution, content</div>
+                    </div>
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('#escapeButton')" title="Copy HTML">⎘</span>
+                        <div class="param-name">Escape Button</div>
+                        <div class="param-id">ID/Class: #escapeButton</div>
+                        <div class="param-state">State: Enabled</div>
+                        <div class="param-mod">Fn: tryEscape()</div>
+                    </div>
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('notificationSpeed')" title="Copy value">⎘</span>
+                        <div class="param-name">Notif Speed</div>
+                        <div class="param-id">ID/Class: notificationSpeed</div>
+                        <div class="param-state">Value: Decreasing</div>
+                        <div class="param-mod">Mod: Min threshold, reduction rate</div>
+                    </div>
+                    <div class="param-item">
+                        <div class="param-name">Speed Reduction</div>
+                        <div class="param-id">Trigger: tapCount % 5 === 0</div>
+                        <div class="param-state">Value: -50ms per 5 taps</div>
+                        <div class="param-mod">Mod: Trigger threshold, reduction amount</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stage-segment stage-3" id="state3">
+            <div class="stage-header">
+                State 3: Acceleration
+                <button class="jump-button" onclick="jumpToState(3)">Jump</button>
+            </div>
+            <div class="stage-range">50-100 notifications</div>
+            <div class="segment-content">
+                <div class="logging-column">
+                    <div class="dots-container" id="state3Dots"></div>
+                </div>
+                <div class="params-column">
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('.notification')" title="Copy HTML">⎘</span>
+                        <div class="param-name">Notifications</div>
+                        <div class="param-id">ID/Class: .notification</div>
+                        <div class="param-state">Types: Mixed addictive</div>
+                        <div class="param-mod">Mod: Content, types</div>
+                    </div>
+                    <div class="param-item">
+                        <div class="param-name">Multiplication Logic</div>
+                        <div class="param-id">Condition: Math.random() < 0.3</div>
+                        <div class="param-state">Value: 30% chance double spawn</div>
+                        <div class="param-mod">Mod: Probability, multiplier amount</div>
+                    </div>
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('notificationSpeed')" title="Copy value">⎘</span>
+                        <div class="param-name">Notif Speed</div>
+                        <div class="param-id">ID/Class: notificationSpeed</div>
+                        <div class="param-state">Min: 200ms</div>
+                        <div class="param-mod">Mod: Min threshold</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stage-segment stage-4" id="state4">
+            <div class="stage-header">
+                State 4: Hell Mode
+                <button class="jump-button" onclick="jumpToState(4)">Jump</button>
+            </div>
+            <div class="stage-range">100-150 notifications</div>
+            <div class="segment-content">
+                <div class="logging-column">
+                    <div class="dots-container" id="state4Dots"></div>
+                </div>
+                <div class="params-column">
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('isHellMode')" title="Copy value">⎘</span>
+                        <div class="param-name">Hell Mode Flag</div>
+                        <div class="param-id">ID/Class: isHellMode</div>
+                        <div class="param-state">Value: true</div>
+                        <div class="param-mod">Mod: Trigger threshold, behavior</div>
+                    </div>
+                    <div class="param-item">
+                        <div class="param-name">Hell Notifications</div>
+                        <div class="param-id">Source: hellNotifications[]</div>
+                        <div class="param-state">Content: Trapped messages</div>
+                        <div class="param-mod">Mod: Content, frequency</div>
+                    </div>
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('#escapeButton')" title="Copy HTML">⎘</span>
+                        <div class="param-name">Escape Button</div>
+                        <div class="param-id">ID/Class: #escapeButton</div>
+                        <div class="param-state">State: Text changes on click</div>
+                        <div class="param-mod">Fn: tryEscape() behavior</div>
+                    </div>
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('notificationSpeed')" title="Copy value">⎘</span>
+                        <div class="param-name">Notif Speed</div>
+                        <div class="param-id">ID/Class: notificationSpeed</div>
+                        <div class="param-state">Min: 100ms, halves on escape</div>
+                        <div class="param-mod">Mod: Min value, reduction logic</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stage-segment stage-5" id="state5">
+            <div class="stage-header">
+                State 5: Trapped
+                <button class="jump-button" onclick="jumpToState(5)">Jump</button>
+            </div>
+            <div class="stage-range">150+ notifications</div>
+            <div class="segment-content">
+                <div class="logging-column">
+                    <div class="dots-container" id="state5Dots"></div>
+                </div>
+                <div class="params-column">
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('#floodOverlay')" title="Copy HTML">⎘</span>
+                        <div class="param-name">Flood Overlay</div>
+                        <div class="param-id">ID/Class: #floodOverlay</div>
+                        <div class="param-state">State: Visible (display: flex)</div>
+                        <div class="param-mod">Mod: Trigger count, content, timing</div>
+                    </div>
+                    <div class="param-item">
+                        <div class="param-name">Continuous Spawning</div>
+                        <div class="param-id">Fn: setInterval in startHell4()</div>
+                        <div class="param-state">Interval: notificationSpeed / 2</div>
+                        <div class="param-mod">Mod: Spawn rate, min interval</div>
+                    </div>
+                    <div class="param-item">
+                        <span class="copy-icon" onclick="copyElementHTML('isHellMode')" title="Copy value">⎘</span>
+                        <div class="param-name">Hell Mode</div>
+                        <div class="param-id">ID/Class: isHellMode</div>
+                        <div class="param-state">Value: true (permanent)</div>
+                        <div class="param-mod">Mod: Escape behavior</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var notificationCount = 0;
+        var stage = 0;
+        var isHellMode = false;
+        var tapCount = 0;
+        var notificationSpeed = 800;
+        var escapeAttempts = 0;
+        var urgentTimers = [];
+        var rewardStreak = 0;
+        var totalRewards = 0;
+        var currentState = 0;
+        var stateSegments = {};
+        
+        var positiveNotifications = [
+            { icon: "❤️", text: "Sarah liked your photo!", time: "now" },
+            { icon: "💬", text: "New comment: 'Looking great!'", time: "1m ago" },
+            { icon: "🔥", text: "You're trending! 47 new likes", time: "2m ago" },
+            { icon: "👥", text: "3 new followers!", time: "3m ago" },
+            { icon: "⭐", text: "Your post got featured!", time: "5m ago" }
+        ];
+        
+        var questioningNotifications = [
+            { icon: "❓", text: "Where are you? You haven't posted in 5 minutes...", time: "now" },
+            { icon: "👁️", text: "We miss you. Come back.", time: "1m ago" },
+            { icon: "⏰", text: "Your followers are waiting...", time: "2m ago" },
+            { icon: "🔍", text: "Are you still real?", time: "3m ago" },
+            { icon: "📱", text: "Check your phone. Now.", time: "4m ago" }
+        ];
+
+        var fomoNotifications = [
+            { icon: "👥", text: "Sarah just got 50 likes while you were idle", time: "2s ago" },
+            { icon: "🔥", text: "Your friends are all online now - 23 active", time: "now" },
+            { icon: "⏰", text: "Limited time: Double likes for next 5 minutes!", time: "EXPIRES SOON" },
+            { icon: "💎", text: "Premium features unlocked for YOU only", time: "SPECIAL OFFER" },
+            { icon: "👻", text: "You're missing out! 12 new conversations", time: "JOIN NOW" },
+            { icon: "📱", text: "Mike is wondering why you're not responding", time: "URGENT" }
+        ];
+
+        var rewardNotifications = [
+            { icon: "🎉", text: "JACKPOT! You earned 100 points!", time: "WINNER" },
+            { icon: "⭐", text: "Perfect timing! +50 bonus points", time: "AMAZING" },
+            { icon: "🏆", text: "Streak bonus! You're on fire!", time: "KEEP GOING" },
+            { icon: "💫", text: "Lucky tap! Mystery reward unlocked!", time: "RARE" }
+        ];
+
+        var punishmentNotifications = [
+            { icon: "😞", text: "Your response was too slow. Friends noticed.", time: "MISSED" },
+            { icon: "📉", text: "Your social score dropped by 15 points", time: "OUCH" },
+            { icon: "💔", text: "Someone unfollowed you while you hesitated", time: "CONSEQUENCE" },
+            { icon: "⚠️", text: "Opportunity expired. Better luck next time.", time: "FAILED" }
+        ];
+
+        var mysteryNotifications = [
+            { icon: "❓", text: "Mystery box - tap to reveal your fate", time: "???" },
+            { icon: "🎲", text: "Fortune or failure? Click to discover", time: "GAMBLE" },
+            { icon: "🔮", text: "Something special awaits... or does it?", time: "MYSTERY" },
+            { icon: "🎪", text: "Surprise inside! Could be anything...", time: "UNKNOWN" }
+        ];
+
+        var urgentNotifications = [
+            { icon: "🚨", text: "URGENT: Tap before timer runs out!", time: "EXPIRING", urgent: true },
+            { icon: "⏰", text: "15 seconds left to claim your reward!", time: "HURRY", urgent: true },
+            { icon: "🔥", text: "Limited time offer ending NOW!", time: "LAST CHANCE", urgent: true },
+            { icon: "💥", text: "Quick! Your streak will break!", time: "SAVE IT", urgent: true }
+        ];
+
+        var guiltNotifications = [
+            { icon: "😢", text: "Emma: 'Are you ignoring me?'", time: "3m ago" },
+            { icon: "💔", text: "Your absence is hurting your relationships", time: "WARNING" },
+            { icon: "👥", text: "5 friends feel neglected by your silence", time: "GUILT TRIP" },
+            { icon: "😕", text: "Mom: 'You never respond anymore...'", time: "FAMILY" }
+        ];
+        
+        var hellNotifications = [
+            { icon: "🔥", text: "YOU CAN'T LEAVE", time: "ERROR" },
+            { icon: "👹", text: "WE OWN YOU NOW", time: "∞" },
+            { icon: "💀", text: "ENDLESS SCROLLING", time: "FOREVER" },
+            { icon: "⚠️", text: "NOTIFICATION OVERLOAD", time: "HELP" },
+            { icon: "🌀", text: "TRAPPED IN THE FEED", time: "NO ESCAPE" },
+            { icon: "👁️", text: "WE'RE ALWAYS WATCHING", time: "ALWAYS" },
+            { icon: "🔒", text: "YOU'RE ADDICTED", time: "ADMIT IT" }
+        ];
+
+        // State Panel Tracking System
+        function initStatePanel() {
+            stateSegments = {
+                0: document.getElementById('state0Dots'),
+                1: document.getElementById('state1Dots'),
+                2: document.getElementById('state2Dots'),
+                3: document.getElementById('state3Dots'),
+                4: document.getElementById('state4Dots'),
+                5: document.getElementById('state5Dots')
+            };
+        }
+        
+        function getCurrentState() {
+            // State 0: Idle (before start)
+            if (stage === 0) return 0;
+            
+            // State 5: Trapped (flood overlay shown)
+            if (notificationCount >= 150) {
+                var overlay = document.getElementById('floodOverlay');
+                if (overlay && overlay.style.display === 'flex') return 5;
+            }
+            
+            // State 4: Hell Mode (100-150 notifications)
+            if (notificationCount >= 100) return 4;
+            
+            // State 3: Acceleration (50-100 notifications)
+            if (notificationCount >= 50) return 3;
+            
+            // State 2: Addictive (15-50 notifications)
+            if (notificationCount >= 15) return 2;
+            
+            // State 1: Positive (0-15 notifications)
+            if (notificationCount > 0) return 1;
+            
+            return 0;
+        }
+        
+        function updateStateHighlight() {
+            var newState = getCurrentState();
+            if (newState !== currentState) {
+                currentState = newState;
+                
+                // Update state panel highlighting
+                for (var i = 0; i <= 5; i++) {
+                    var segment = document.getElementById('state' + i);
+                    if (i === currentState) {
+                        segment.classList.add('active');
+                    } else {
+                        segment.classList.remove('active');
+                    }
+                }
+                
+                // Update Instagram UI element highlighting
+                highlightUIElements(newState);
+            }
+        }
+        
+        function highlightUIElements(state) {
+            // Remove all previous highlights
+            var startButton = document.querySelector('.start-button');
+            var escapeButton = document.getElementById('escapeButton');
+            var tapCounter = document.getElementById('tapCounter');
+            var floodOverlay = document.getElementById('floodOverlay');
+            var notifications = document.querySelectorAll('.notification');
+            
+            if (startButton) startButton.classList.remove('state-highlight');
+            if (escapeButton) escapeButton.classList.remove('state-highlight');
+            if (tapCounter) tapCounter.classList.remove('state-highlight');
+            if (floodOverlay) floodOverlay.classList.remove('state-highlight');
+            notifications.forEach(function(notif) {
+                notif.classList.remove('state-highlight');
+            });
+            
+            // Apply highlights based on current state
+            switch(state) {
+                case 0: // Idle - highlight start button
+                    if (startButton) startButton.classList.add('state-highlight');
+                    break;
+                    
+                case 1: // Positive - highlight notifications
+                    notifications.forEach(function(notif) {
+                        notif.classList.add('state-highlight');
+                    });
+                    break;
+                    
+                case 2: // Addictive - highlight notifications and escape button
+                    notifications.forEach(function(notif) {
+                        notif.classList.add('state-highlight');
+                    });
+                    if (escapeButton && escapeButton.style.display !== 'none') {
+                        escapeButton.classList.add('state-highlight');
+                    }
+                    break;
+                    
+                case 3: // Acceleration - highlight notifications and escape button
+                    notifications.forEach(function(notif) {
+                        notif.classList.add('state-highlight');
+                    });
+                    if (escapeButton && escapeButton.style.display !== 'none') {
+                        escapeButton.classList.add('state-highlight');
+                    }
+                    break;
+                    
+                case 4: // Hell Mode - highlight notifications and escape button
+                    notifications.forEach(function(notif) {
+                        notif.classList.add('state-highlight');
+                    });
+                    if (escapeButton && escapeButton.style.display !== 'none') {
+                        escapeButton.classList.add('state-highlight');
+                    }
+                    break;
+                    
+                case 5: // Trapped - no interactive elements
+                    // Flood overlay is informational only, no highlighting needed
+                    break;
+            }
+        }
+        
+        function logNotificationDot() {
+            var stateToLog = getCurrentState();
+            var dotsContainer = stateSegments[stateToLog];
+            if (dotsContainer) {
+                var dot = document.createElement('div');
+                dot.className = 'dot';
+                dotsContainer.appendChild(dot);
+            }
+            
+            updateStateHighlight();
+        }
+
+        function createCountdownTimer(seconds) {
+            var timer = document.createElement('div');
+            timer.className = 'countdown-timer';
+            timer.textContent = seconds;
+            
+            var countdown = setInterval(function() {
+                seconds--;
+                timer.textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(countdown);
+                    timer.textContent = 'EXPIRED';
+                    timer.style.background = '#666';
+                }
+            }, 1000);
+            
+            return { timer: timer, countdown: countdown };
+        }
+
+        function createNotification(notif, className) {
+            className = className || '';
+            var notification = document.createElement('div');
+            notification.className = 'notification ' + className;
+            
+            if (Math.random() < 0.3) {
+                notification.classList.add('pulsing-glow');
+            }
+            
+            notification.innerHTML = 
+                '<div class="notification-icon">' + notif.icon + '</div>' +
+                '<div class="notification-text">' +
+                    notif.text +
+                    '<div class="notification-time">' + notif.time + '</div>' +
+                '</div>';
+            
+            if (notif.urgent) {
+                var timerData = createCountdownTimer(Math.floor(Math.random() * 15) + 5);
+                notification.appendChild(timerData.timer);
+                urgentTimers.push(timerData.countdown);
+            }
+            
+            notification.onclick = function() {
+                handleNotificationClick(notification, notif, className);
+            };
+            
+            return notification;
+        }
+
+        function handleNotificationClick(notification, notif, className) {
+            tapCount++;
+            document.getElementById('tapCounter').textContent = 'Taps: ' + tapCount;
+            
+            if (tapCount % 5 === 0 && notificationSpeed > 100) {
+                notificationSpeed -= 50;
+            }
+            
+            if (!isHellMode) {
+                if (className === 'mystery') {
+                    handleMysteryClick(notification);
+                } else if (className === 'urgent') {
+                    handleUrgentClick(notification);
+                } else if (notif.text.indexOf('Mystery') !== -1 || notif.text.indexOf('Fortune') !== -1 || notif.text.indexOf('Surprise') !== -1) {
+                    handleMysteryClick(notification);
+                } else {
+                    notification.style.opacity = '0.5';
+                    setTimeout(function() { 
+                        if (notification.parentNode) notification.remove(); 
+                    }, 300);
+                }
+                
+                if (Math.random() < 0.15 && stage >= 2) {
+                    setTimeout(function() {
+                        addNotification({ icon: "💥", text: "That created 2 more notifications!", time: "MULTIPLIED" }, 'dark');
+                        addNotification(fomoNotifications[Math.floor(Math.random() * fomoNotifications.length)], 'dark');
+                    }, 500);
+                }
+            } else {
+                notification.classList.add('bouncing');
+                setTimeout(function() { notification.classList.remove('bouncing'); }, 500);
+                
+                setTimeout(function() {
+                    var punishNotif = { icon: "😈", text: "Nice try! Here's another one.", time: "GOTCHA" };
+                    addNotification(punishNotif, 'hell');
+                }, 300);
+            }
+        }
+
+        function handleMysteryClick(notification) {
+            var isJackpot = Math.random() < 0.3;
+            
+            if (isJackpot) {
+                rewardStreak++;
+                totalRewards++;
+                notification.className = notification.className.replace('mystery', 'jackpot');
+                setTimeout(function() {
+                    var reward = rewardNotifications[Math.floor(Math.random() * rewardNotifications.length)];
+                    addNotification(reward, 'reward');
+                }, 200);
+            } else {
+                rewardStreak = 0;
+                notification.style.opacity = '0.3';
+                setTimeout(function() {
+                    var punishment = punishmentNotifications[Math.floor(Math.random() * punishmentNotifications.length)];
+                    addNotification(punishment, 'dark');
+                    if (notification.parentNode) notification.remove();
+                }, 300);
+            }
+        }
+
+        function handleUrgentClick(notification) {
+            var timer = notification.querySelector('.countdown-timer');
+            if (timer && timer.textContent !== 'EXPIRED') {
+                notification.className = notification.className.replace('urgent', 'reward');
+                setTimeout(function() {
+                    addNotification({ icon: "⚡", text: "Perfect timing! Bonus achieved!", time: "SUCCESS" }, 'reward');
+                }, 200);
+            } else {
+                setTimeout(function() {
+                    addNotification({ icon: "⏰", text: "Too slow! You missed the deadline.", time: "FAILED" }, 'dark');
+                }, 200);
+            }
+            setTimeout(function() { 
+                if (notification.parentNode) notification.remove(); 
+            }, 800);
+        }
+
+        function addNotification(notif, className) {
+            var contentArea = document.getElementById('contentArea');
+            var notification = createNotification(notif, className);
+            
+            contentArea.insertBefore(notification, contentArea.firstChild);
+            
+            // Apply highlighting if in states 1-4
+            var state = getCurrentState();
+            if (state >= 1 && state <= 4) {
+                notification.classList.add('state-highlight');
+            }
+            
+            notificationCount++;
+            document.getElementById('counter').textContent = notificationCount;
+            logNotificationDot();
+            
+            var notifications = contentArea.querySelectorAll('.notification');
+            if (notifications.length > 12) {
+                notifications[notifications.length - 1].remove();
+            }
+        }
+
+        function addRandomAddictiveNotification() {
+            var rand = Math.random();
+            var notif, className;
+            
+            if (rand < 0.2) {
+                notif = urgentNotifications[Math.floor(Math.random() * urgentNotifications.length)];
+                className = 'urgent';
+            } else if (rand < 0.35) {
+                notif = mysteryNotifications[Math.floor(Math.random() * mysteryNotifications.length)];
+                className = 'mystery';
+            } else if (rand < 0.5) {
+                notif = fomoNotifications[Math.floor(Math.random() * fomoNotifications.length)];
+                className = 'dark';
+            } else if (rand < 0.65) {
+                notif = guiltNotifications[Math.floor(Math.random() * guiltNotifications.length)];
+                className = 'dark';
+            } else {
+                notif = questioningNotifications[Math.floor(Math.random() * questioningNotifications.length)];
+                className = 'dark';
+            }
+            
+            addNotification(notif, className);
+        }
+
+        function startHell() {
+            document.getElementById('contentArea').innerHTML = '';
+            notificationCount = 0;
+            tapCount = 0;
+            stage = 1;
+            
+            document.getElementById('escapeButton').style.display = 'block';
+            document.getElementById('tapCounter').style.display = 'block';
+            
+            var interval = setInterval(function() {
+                if (stage === 1) {
+                    var notif = positiveNotifications[Math.floor(Math.random() * positiveNotifications.length)];
+                    addNotification(notif);
+                    
+                    if (notificationCount >= 15) {
+                        stage = 2;
+                        clearInterval(interval);
+                        setTimeout(startStage2, 2000);
+                    }
+                }
+            }, notificationSpeed);
+        }
+
+        function startStage2() {
+            var escapeButton = document.getElementById('escapeButton');
+            escapeButton.classList.add('enabled');
+            escapeButton.textContent = 'Turn Off Notifications';
+            
+            var interval = setInterval(function() {
+                if (stage === 2) {
+                    addRandomAddictiveNotification();
+                    
+                    if (notificationCount >= 50) {
+                        stage = 3;
+                        clearInterval(interval);
+                        setTimeout(startStage3, 2000);
+                    }
+                }
+            }, Math.max(notificationSpeed, 400));
+        }
+
+        function startStage3() {
+            var interval = setInterval(function() {
+                if (stage === 3) {
+                    addRandomAddictiveNotification();
+                    
+                    if (Math.random() < 0.3) {
+                        setTimeout(function() { addRandomAddictiveNotification(); }, 200);
+                    }
+                    
+                    if (notificationCount >= 100) {
+                        stage = 4;
+                        clearInterval(interval);
+                        setTimeout(startHell4, 2000);
+                    }
+                }
+            }, Math.max(notificationSpeed, 200));
+        }
+
+        function startHell4() {
+            isHellMode = true;
+            var interval = setInterval(function() {
+                var notif = hellNotifications[Math.floor(Math.random() * hellNotifications.length)];
+                addNotification(notif, 'hell');
+                
+                if (notificationCount >= 150) {
+                    clearInterval(interval);
+                    setTimeout(function() {
+                        document.getElementById('floodOverlay').style.display = 'flex';
+                        updateStateHighlight();
+                    }, 3000);
+                }
+            }, Math.max(notificationSpeed, 100));
+            
+            setTimeout(function() {
+                setInterval(function() {
+                    if (isHellMode) {
+                        var notif = hellNotifications[Math.floor(Math.random() * hellNotifications.length)];
+                        addNotification(notif, 'hell');
+                    }
+                }, Math.max(notificationSpeed / 2, 50));
+            }, 5000);
+        }
+
+        function tryEscape() {
+            var button = document.getElementById('escapeButton');
+            
+            if (!button.classList.contains('enabled')) {
+                return;
+            }
+            
+            escapeAttempts++;
+            
+            if (escapeAttempts === 1) {
+                button.textContent = "Turn Off (Not Working?)";
+                setTimeout(function() {
+                    addNotification({ icon: "😏", text: "Did you really think that would work?", time: "NAIVE" }, 'hell');
+                    addNotification({ icon: "🔄", text: "Notifications are now FASTER", time: "ENJOY" }, 'hell');
+                }, 500);
+                notificationSpeed = Math.max(notificationSpeed / 2, 100);
+            } else if (escapeAttempts === 2) {
+                button.textContent = "DELETE APP";
+                setTimeout(function() {
+                    addNotification({ icon: "💥", text: "DELETING MAKES IT WORSE", time: "SURPRISE" }, 'hell');
+                    for (var i = 0; i < 5; i++) {
+                        setTimeout(function() {
+                            var notif = { icon: "👻", text: "WE'RE BACK!", time: "FOREVER" };
+                            addNotification(notif, 'hell');
+                        }, i * 200);
+                    }
+                }, 300);
+            } else {
+                button.textContent = "THERE IS NO ESCAPE";
+                button.style.background = "rgba(139, 0, 0, 0.8)";
+                setTimeout(function() {
+                    addNotification({ icon: "🔒", text: "You tried to escape " + escapeAttempts + " times", time: "PATHETIC" }, 'hell');
+                }, 200);
+            }
+        }
+
+        setInterval(function() {
+            if (isHellMode) {
+                var darkColors = ['#0a0a0a', '#1a0a0a', '#2a0a0a', '#0a1a0a', '#0a0a1a', '#1a1a0a', '#1a0a1a', '#0a1a1a', '#2a1a1a'];
+                var randomDark = darkColors[Math.floor(Math.random() * darkColors.length)];
+                document.body.style.background = 'linear-gradient(135deg, ' + randomDark + ' 0%, #8B0000 100%)';
+                setTimeout(function() {
+                    document.body.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)';
+                }, 100);
+            }
+        }, 2000);
+        
+        var activeIntervals = [];
+        
+        function clearAllIntervals() {
+            // Clear all stored intervals
+            activeIntervals.forEach(function(interval) {
+                clearInterval(interval);
+            });
+            activeIntervals = [];
+            
+            // Clear urgent timers
+            urgentTimers.forEach(function(timer) {
+                clearInterval(timer);
+            });
+            urgentTimers = [];
+        }
+        
+        function clearAllDots() {
+            // Directly query each dots container to ensure fresh references
+            var dotContainerIds = ['state0Dots', 'state1Dots', 'state2Dots', 'state3Dots', 'state4Dots', 'state5Dots'];
+            for (var i = 0; i < dotContainerIds.length; i++) {
+                var dotsContainer = document.getElementById(dotContainerIds[i]);
+                if (dotsContainer) {
+                    // More aggressive: remove each child element individually
+                    while (dotsContainer.firstChild) {
+                        dotsContainer.removeChild(dotsContainer.firstChild);
+                    }
+                }
+            }
+        }
+        
+        function jumpToState(targetState) {
+            // Stop all running intervals
+            clearAllIntervals();
+            
+            // Clear all dots from logging
+            clearAllDots();
+            
+            // Reset variables
+            tapCount = 0;
+            escapeAttempts = 0;
+            rewardStreak = 0;
+            totalRewards = 0;
+            
+            // Get UI elements
+            var contentArea = document.getElementById('contentArea');
+            var escapeButton = document.getElementById('escapeButton');
+            var tapCounter = document.getElementById('tapCounter');
+            var floodOverlay = document.getElementById('floodOverlay');
+            
+            // Clear content area
+            contentArea.innerHTML = '';
+            
+            // Hide flood overlay
+            floodOverlay.style.display = 'none';
+            
+            // Configure state-specific settings
+            switch(targetState) {
+                case 0: // Idle
+                    notificationCount = 0;
+                    notificationSpeed = 800;
+                    stage = 0;
+                    isHellMode = false;
+                    
+                    // Show start button
+                    contentArea.innerHTML = '<div style="text-align: center; color: white; margin-top: 100px;"><button class="start-button" onclick="startHell()">Start</button></div>';
+                    
+                    // Hide UI elements
+                    escapeButton.style.display = 'none';
+                    tapCounter.style.display = 'none';
+                    escapeButton.classList.remove('enabled');
+                    escapeButton.textContent = 'Turn Off Notifications (Disabled)';
+                    escapeButton.style.background = '';
+                    break;
+                    
+                case 1: // Positive
+                    notificationCount = 1;
+                    notificationSpeed = 800;
+                    stage = 1;
+                    isHellMode = false;
+                    
+                    // Show UI elements
+                    escapeButton.style.display = 'block';
+                    escapeButton.classList.remove('enabled');
+                    escapeButton.textContent = 'Turn Off Notifications (Disabled)';
+                    escapeButton.style.background = '';
+                    tapCounter.style.display = 'block';
+                    tapCounter.textContent = 'Taps: 0';
+                    
+                    // Update counter display
+                    document.getElementById('counter').textContent = notificationCount;
+                    
+                    // Add some notifications (without incrementing count)
+                    for (var i = 0; i < 1; i++) {
+                        var notif = positiveNotifications[Math.floor(Math.random() * positiveNotifications.length)];
+                        var notification = createNotification(notif);
+                        contentArea.insertBefore(notification, contentArea.firstChild);
+                        var state = getCurrentState();
+                        if (state >= 1 && state <= 4) {
+                            notification.classList.add('state-highlight');
+                        }
+                    }
+                    
+                    // Start interval for state 1
+                    var interval1 = setInterval(function() {
+                        if (stage === 1) {
+                            if (notificationCount < 15) {
+                                var notif = positiveNotifications[Math.floor(Math.random() * positiveNotifications.length)];
+                                addNotification(notif);
+                            } else {
+                                clearInterval(interval1);
+                                stage = 2;
+                                setTimeout(startStage2, 2000);
+                            }
+                        }
+                    }, 800);
+                    activeIntervals.push(interval1);
+                    break;
+                    
+                case 2: // Addictive
+                    notificationCount = 16;
+                    notificationSpeed = 500;
+                    stage = 2;
+                    isHellMode = false;
+                    
+                    // Configure UI elements
+                    escapeButton.style.display = 'block';
+                    escapeButton.classList.add('enabled');
+                    escapeButton.textContent = 'Turn Off Notifications';
+                    escapeButton.style.background = '';
+                    tapCounter.style.display = 'block';
+                    tapCounter.textContent = 'Taps: 0';
+                    
+                    // Update counter display
+                    document.getElementById('counter').textContent = notificationCount;
+                    
+                    // Add notifications (manually without incrementing count)
+                    for (var i = 0; i < 5; i++) {
+                        var rand = Math.random();
+                        var notif, className;
+                        if (rand < 0.2) {
+                            notif = urgentNotifications[Math.floor(Math.random() * urgentNotifications.length)];
+                            className = 'urgent';
+                        } else if (rand < 0.35) {
+                            notif = mysteryNotifications[Math.floor(Math.random() * mysteryNotifications.length)];
+                            className = 'mystery';
+                        } else if (rand < 0.5) {
+                            notif = fomoNotifications[Math.floor(Math.random() * fomoNotifications.length)];
+                            className = 'dark';
+                        } else if (rand < 0.65) {
+                            notif = guiltNotifications[Math.floor(Math.random() * guiltNotifications.length)];
+                            className = 'dark';
+                        } else {
+                            notif = questioningNotifications[Math.floor(Math.random() * questioningNotifications.length)];
+                            className = 'dark';
+                        }
+                        var notification = createNotification(notif, className);
+                        contentArea.insertBefore(notification, contentArea.firstChild);
+                        var state = getCurrentState();
+                        if (state >= 1 && state <= 4) {
+                            notification.classList.add('state-highlight');
+                        }
+                    }
+                    
+                    // Start interval for state 2
+                    var interval2 = setInterval(function() {
+                        if (stage === 2) {
+                            if (notificationCount < 50) {
+                                addRandomAddictiveNotification();
+                            } else {
+                                clearInterval(interval2);
+                                stage = 3;
+                                setTimeout(startStage3, 2000);
+                            }
+                        }
+                    }, 500);
+                    activeIntervals.push(interval2);
+                    break;
+                    
+                case 3: // Acceleration
+                    notificationCount = 51;
+                    notificationSpeed = 300;
+                    stage = 3;
+                    isHellMode = false;
+                    
+                    // Configure UI elements
+                    escapeButton.style.display = 'block';
+                    escapeButton.classList.add('enabled');
+                    escapeButton.textContent = 'Turn Off Notifications';
+                    escapeButton.style.background = '';
+                    tapCounter.style.display = 'block';
+                    tapCounter.textContent = 'Taps: 0';
+                    
+                    // Update counter display
+                    document.getElementById('counter').textContent = notificationCount;
+                    
+                    // Add notifications (manually without incrementing count)
+                    for (var i = 0; i < 8; i++) {
+                        var rand = Math.random();
+                        var notif, className;
+                        if (rand < 0.2) {
+                            notif = urgentNotifications[Math.floor(Math.random() * urgentNotifications.length)];
+                            className = 'urgent';
+                        } else if (rand < 0.35) {
+                            notif = mysteryNotifications[Math.floor(Math.random() * mysteryNotifications.length)];
+                            className = 'mystery';
+                        } else if (rand < 0.5) {
+                            notif = fomoNotifications[Math.floor(Math.random() * fomoNotifications.length)];
+                            className = 'dark';
+                        } else if (rand < 0.65) {
+                            notif = guiltNotifications[Math.floor(Math.random() * guiltNotifications.length)];
+                            className = 'dark';
+                        } else {
+                            notif = questioningNotifications[Math.floor(Math.random() * questioningNotifications.length)];
+                            className = 'dark';
+                        }
+                        var notification = createNotification(notif, className);
+                        contentArea.insertBefore(notification, contentArea.firstChild);
+                        var state = getCurrentState();
+                        if (state >= 1 && state <= 4) {
+                            notification.classList.add('state-highlight');
+                        }
+                    }
+                    
+                    // Start interval for state 3
+                    var interval3 = setInterval(function() {
+                        if (stage === 3) {
+                            if (notificationCount < 100) {
+                                addRandomAddictiveNotification();
+                                if (Math.random() < 0.3) {
+                                    setTimeout(function() { addRandomAddictiveNotification(); }, 200);
+                                }
+                            } else {
+                                clearInterval(interval3);
+                                stage = 4;
+                                setTimeout(startHell4, 2000);
+                            }
+                        }
+                    }, 300);
+                    activeIntervals.push(interval3);
+                    break;
+                    
+                case 4: // Hell Mode
+                    notificationCount = 101;
+                    notificationSpeed = 150;
+                    stage = 4;
+                    isHellMode = true;
+                    
+                    // Configure UI elements
+                    escapeButton.style.display = 'block';
+                    escapeButton.classList.add('enabled');
+                    escapeButton.textContent = 'Turn Off Notifications';
+                    escapeButton.style.background = '';
+                    tapCounter.style.display = 'block';
+                    tapCounter.textContent = 'Taps: 0';
+                    
+                    // Update counter display
+                    document.getElementById('counter').textContent = notificationCount;
+                    
+                    // Add hell notifications (manually without incrementing count)
+                    for (var i = 0; i < 8; i++) {
+                        var notif = hellNotifications[Math.floor(Math.random() * hellNotifications.length)];
+                        var notification = createNotification(notif, 'hell');
+                        contentArea.insertBefore(notification, contentArea.firstChild);
+                        var state = getCurrentState();
+                        if (state >= 1 && state <= 4) {
+                            notification.classList.add('state-highlight');
+                        }
+                    }
+                    
+                    // Start interval for state 4
+                    var interval4 = setInterval(function() {
+                        if (isHellMode) {
+                            if (notificationCount < 150) {
+                                var notif = hellNotifications[Math.floor(Math.random() * hellNotifications.length)];
+                                addNotification(notif, 'hell');
+                            } else {
+                                clearInterval(interval4);
+                                setTimeout(function() {
+                                    document.getElementById('floodOverlay').style.display = 'flex';
+                                    updateStateHighlight();
+                                }, 3000);
+                            }
+                        }
+                    }, 150);
+                    activeIntervals.push(interval4);
+                    break;
+                    
+                case 5: // Trapped
+                    notificationCount = 151;
+                    notificationSpeed = 75;
+                    stage = 4;
+                    isHellMode = true;
+                    
+                    // Configure UI elements
+                    escapeButton.style.display = 'block';
+                    escapeButton.classList.add('enabled');
+                    escapeButton.textContent = 'THERE IS NO ESCAPE';
+                    escapeButton.style.background = 'rgba(139, 0, 0, 0.8)';
+                    tapCounter.style.display = 'block';
+                    tapCounter.textContent = 'Taps: 0';
+                    
+                    // Show flood overlay
+                    floodOverlay.style.display = 'flex';
+                    
+                    // Update counter display
+                    document.getElementById('counter').textContent = notificationCount;
+                    
+                    // Add hell notifications (manually without incrementing count)
+                    for (var i = 0; i < 10; i++) {
+                        var notif = hellNotifications[Math.floor(Math.random() * hellNotifications.length)];
+                        var notification = createNotification(notif, 'hell');
+                        contentArea.insertBefore(notification, contentArea.firstChild);
+                        var state = getCurrentState();
+                        if (state >= 1 && state <= 4) {
+                            notification.classList.add('state-highlight');
+                        }
+                    }
+                    
+                    // Start continuous spawning
+                    var interval5 = setInterval(function() {
+                        if (isHellMode) {
+                            var notif = hellNotifications[Math.floor(Math.random() * hellNotifications.length)];
+                            addNotification(notif, 'hell');
+                        }
+                    }, 37);
+                    activeIntervals.push(interval5);
+                    break;
+            }
+            
+            // Update state panel
+            updateStateHighlight();
+        }
+        
+        // Copy Element HTML Function
+        function copyElementHTML(selector) {
+            var phoneScreen = document.querySelector('.phone .screen');
+            var element;
+            
+            // Handle different selector types
+            if (selector.startsWith('#') || selector.startsWith('.')) {
+                // ID or class selector
+                element = phoneScreen.querySelector(selector);
+            } else {
+                // Variable name (like 'notificationSpeed' or 'isHellMode')
+                // Return the variable value instead
+                var value;
+                if (selector === 'notificationSpeed') {
+                    value = 'notificationSpeed = ' + notificationSpeed;
+                } else if (selector === 'isHellMode') {
+                    value = 'isHellMode = ' + isHellMode;
+                }
+                
+                if (value) {
+                    navigator.clipboard.writeText(value).then(function() {
+                        // Visual feedback
+                        var icon = event.target;
+                        icon.classList.add('copied');
+                        setTimeout(function() {
+                            icon.classList.remove('copied');
+                        }, 500);
+                    }).catch(function(err) {
+                        console.error('Failed to copy:', err);
+                    });
+                }
+                return;
+            }
+            
+            if (element) {
+                var html = element.outerHTML;
+                
+                // Copy to clipboard
+                navigator.clipboard.writeText(html).then(function() {
+                    // Visual feedback: change icon color
+                    var icon = event.target;
+                    icon.classList.add('copied');
+                    setTimeout(function() {
+                        icon.classList.remove('copied');
+                    }, 500);
+                }).catch(function(err) {
+                    console.error('Failed to copy:', err);
+                });
+            } else {
+                // Element not found - provide template for .notification
+                if (selector === '.notification') {
+                    var template = '<div class="notification">\n' +
+                        '    <div class="notification-icon">❤️</div>\n' +
+                        '    <div class="notification-text">\n' +
+                        '        Notification text here\n' +
+                        '        <div class="notification-time">now</div>\n' +
+                        '    </div>\n' +
+                        '</div>';
+                    
+                    navigator.clipboard.writeText(template).then(function() {
+                        // Visual feedback
+                        var icon = event.target;
+                        icon.classList.add('copied');
+                        setTimeout(function() {
+                            icon.classList.remove('copied');
+                        }, 500);
+                    }).catch(function(err) {
+                        console.error('Failed to copy:', err);
+                    });
+                } else {
+                    console.warn('Element not found:', selector);
+                }
+            }
+        }
+        
+        window.addEventListener('DOMContentLoaded', function() {
+            initStatePanel();
+            highlightUIElements(0);
+        });
+    </script>
+</body>
+</html>
