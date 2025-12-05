@@ -578,9 +578,12 @@
             color: #8B7EC8;
             font-weight: 400;
             margin-bottom: 10px;
+        }
+
+        .project-links {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            gap: 15px;
+            margin-top: 6px;
         }
 
         .github-link {
@@ -601,22 +604,6 @@
             color: #4a4a4a;
             line-height: 1.4;
             margin-bottom: 14px;
-        }
-
-        .project-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .skill-tag {
-            font-family: 'Cardo', serif;
-            font-size: 12px;
-            color: #4a4a4a;
-            background-color: rgba(139, 126, 200, 0.1);
-            padding: 4px 8px;
-            border-radius: 16px;
-            border: 1px solid rgba(139, 126, 200, 0.3);
         }
 
         .github-button {
@@ -888,11 +875,6 @@
 
             .project-description {
                 font-size: 14px;
-            }
-
-            .skill-tag {
-                font-size: 12px;
-                padding: 4px 8px;
             }
 
             .github-button {
@@ -1196,22 +1178,80 @@
         <div class="projects-grid">
             <div class="project-card">
                 <div class="project-image">
+                    <img src="images/vibe-coded.jpg" alt="Vibe-Coded Projects">
+                </div>
+                <div class="project-info">
+                    <div class="project-name">Vibe-Coded Projects</div>
+                    <div class="project-links">
+                        <a href="#" class="github-link">Project Page →</a>
+                    </div>
+                    <p class="project-description">Project description coming soon.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image" style="background: rgba(139, 126, 200, 0.15);">
+                </div>
+                <div class="project-info">
+                    <div class="project-name">AI State Analyzer</div>
+                    <div class="project-links">
+                        <a href="https://github.com/AnushkaBhatnagar/AI-State-Analyzer" target="_blank" class="github-link">GitHub →</a>
+                    </div>
+                    <p class="project-description">A system for analyzing, recording, and debugging state machines in AI-generated web applications. The analysis is enhanced with automated interaction recording using Playwright.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/policy-query-system.jpg" alt="Policy Query System">
+                </div>
+                <div class="project-info">
+                    <div class="project-name">Policy Query System</div>
+                    <div class="project-links">
+                        <a href="https://github.com/AnushkaBhatnagar/Policy-Query-System" target="_blank" class="github-link">GitHub →</a>
+                        <a href="https://policy-query-system.onrender.com/" target="_blank" class="github-link">Website →</a>
+                    </div>
+                    <p class="project-description">An agentic LLM workflow as a policy query system leveraging AI and MCP integrations for natural language policy search and conflict resolution with respect to Columbia CS PhD policies.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image" style="background: rgba(139, 126, 200, 0.15);">
+                </div>
+                <div class="project-info">
+                    <div class="project-name">A Closet Full of Clothes</div>
+                    <div class="project-links">
+                        <a href="/projects/hcdi.html" target="_blank" class="github-link">Project Page →</a>
+                    </div>
+                    <p class="project-description">- and Nothing to Wear. <br>
+                        AI applications that help users manage their wardrobe and create outfits using their existing clothes.
+                    </p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/logomotion.gif" alt="LogoMotion Project">
+                </div>
+                <div class="project-info">
+                    <div class="project-name">LogoMotion</div>
+                    <div class="project-links">
+                        <a href="https://logomotion.vercel.app/" target="_blank" class="github-link">Website →</a>
+                    </div>
+                    <p class="project-description">Visually-grounded code synthesis for creating and editing semantically meaningful animations. Integrated VLMs with an interactive React GUI and prompt engineering for optimized outputs.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
                     <img src="images/Wave.png" alt="Wave Project">
                 </div>
                 <div class="project-info">
-                    <div class="project-name">
-                        <span>Wave</span>
+                    <div class="project-name">Wave</div>
+                    <div class="project-links">
                         <a href="https://github.com/AnushkaBhatnagar/Wave" target="_blank" class="github-link">GitHub →</a>
                     </div>
                     <p class="project-description">A smart journaling application which offers emotion prediction and analysis for your daily journal entries.</p>
-                    <div class="project-skills">
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">SQLite</span>
-                        <span class="skill-tag">NLTK</span>
-                    </div>
                 </div>
             </div>
 
@@ -1220,19 +1260,11 @@
                     <img src="images/MeaLit.png" alt="MeaLit Project">
                 </div>
                 <div class="project-info">
-                    <div class="project-name">
-                        <span>MeaLit</span>
+                    <div class="project-name">MeaLit</div>
+                    <div class="project-links">
                         <a href="https://github.com/AnushkaBhatnagar/MeaLit-2.0" target="_blank" class="github-link">GitHub →</a>
                     </div>
                     <p class="project-description">A dynamic food recommendation engine offering personalized restaurant and recipe suggestions based on your preferences.</p>
-                    <div class="project-skills">
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">SQLite</span>
-                        <span class="skill-tag">Selenium</span>
-                    </div>
                 </div>
             </div>
 
@@ -1241,43 +1273,11 @@
                     <img src="images/Artisano.jpg" alt="Artisano Project">
                 </div>
                 <div class="project-info">
-                    <div class="project-name">
-                        <span>Artisano</span>
+                    <div class="project-name">Artisano</div>
+                    <div class="project-links">
                         <a href="https://github.com/AnushkaBhatnagar/Artisano" target="_blank" class="github-link">GitHub →</a>
                     </div>
                     <p class="project-description">A platform to discover unique art pieces, explore the works of talented artists, and experience the beauty of gallery culture.</p>
-                    <div class="project-skills">
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">SQLAlchemy</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">RDS</span>
-                        <span class="skill-tag">GCP</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h3 class="contributed-subtitle">Contributed To:</h3>
-        
-        <div class="contribution-card">
-            <div class="contribution-image">
-                <img src="images/logomotion.gif" alt="LogoMotion Project">
-            </div>
-            <div class="contribution-content">
-                <div class="contribution-title">
-                    <span>LogoMotion</span>
-                    <a href="https://logomotion.vercel.app/" target="_blank" class="website-link">Website →</a>
-                </div>
-                <div class="mentored-by">
-                    <strong>Mentored By:</strong> <a href="https://www.cs.columbia.edu/~chilton/chilton.html" target="_blank" class="mentor-link">Professor Lydia Chilton</a>, <a href="https://vivian-liu.com/" target="_blank" class="mentor-link">Vivian Liu</a>
-                </div>
-                <div class="contribution-details">
-                    AI-powered visually-grounded code synthesis for creating and editing semantically meaningful animations
-                </div>
-                <div class="contribution-bullet">
-                    Integrated Gen-AI and Vision Language Models with an interactive React GUI and enhanced prompt engineering for optimized outputs and semantic animations
                 </div>
             </div>
         </div>
@@ -1364,7 +1364,7 @@
     </div>
 
     <footer class="footer">
-        <p class="footer-text">Made by Anushka Bhatnagar. Last Updated August 2025.</p>
+        <p class="footer-text">Made by Anushka Bhatnagar. Last Updated December 2025.</p>
     </footer>
 </body>
 </html>

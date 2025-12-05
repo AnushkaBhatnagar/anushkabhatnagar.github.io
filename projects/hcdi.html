@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCDI Projects - Anushka Bhatnagar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #fff6ff 0%, #c1d6ff 100%);
+            min-height: 100vh;
+            padding: 50px 60px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .main-heading {
+            font-size: 36px;
+            color: #2c2c2c;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 17px;
+            color: #4a4a4a;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #2c2c2c;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: #4a4a4a;
+            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .section-subtitle strong {
+            color: #2c2c2c;
+        }
+
+        .link {
+            color: #8B7EC8;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .link:hover {
+            opacity: 0.7;
+        }
+
+        /* YouTube Embed */
+        .video-container {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .video-placeholder {
+            width: 236px;
+            height: 420px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .video-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0 25px 0;
+        }
+
+        .image-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .image-single {
+            max-width: 450px;
+            margin: 15px 0 25px 0;
+        }
+
+        .image-single img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 35px 25px;
+            }
+
+            .main-heading {
+                font-size: 26px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .section-subtitle {
+                font-size: 13px;
+            }
+
+            .image-grid {
+                flex-direction: column;
+            }
+
+            .video-placeholder {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 25px 15px;
+            }
+
+            .main-heading {
+                font-size: 22px;
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+
+            .subtitle {
+                font-size: 13px;
+            }
+
+            .section-subtitle {
+                font-size: 12px;
+            }
+
+            .video-placeholder {
+                height: 170px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <h1 class="main-heading">Human-Centered Design & Innovation Project</h1>
+            <p class="subtitle">Fall 2025, Columbia University</p>
+            <p class="subtitle">Mentored by <a href="https://www.engineering.columbia.edu/faculty-staff/directory/harry-west" target="_blank" class="link">Professor Harry West</a></p>
+        </div>
+
+        <!-- Final Project Section -->
+        <div class="section">
+            <h2 class="section-title">Final Project</h2>
+            <p class="section-subtitle"><strong>Problem Statement:</strong> A Closet Full of Clothes and Nothing to Wear</p>
+            <p class="section-subtitle"><strong>Prototypes Developed:</strong> <a href="https://human-centered-design-and-innovation.vercel.app/" target="_blank" class="link">Prototypes</a></p>
+            <p class="section-subtitle"><strong>Final Solution:</strong> <a href="https://human-centered-design-and-innovation.vercel.app/prototype4-aspire/" target="_blank" class="link">Aspire</a></p>
+            <p class="section-subtitle"><strong>Aspire Ad:</strong></p>
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <iframe src="https://www.youtube.com/embed/pq3fONi7Zz4" title="Aspire Ad" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design Projects Section -->
+        <div class="section">
+            <h2 class="section-title">Design Projects</h2>
+            
+            <p class="section-subtitle"><strong>Designing a Pair of Shoes For Partner</strong></p>
+            <div class="image-grid">
+                <div class="image-placeholder"><img src="/images/hcdi/shoes-research.png" alt=""></div>
+                <div class="image-placeholder"><img src="/images/hcdi/shoes-design.png" alt=""></div>
+            </div>
+
+            <p class="section-subtitle"><strong>Design Decode of an Object I Regularly Interact with and Feel a Particular Connection To</strong></p>
+            <div class="image-single"><img src="/images/hcdi/design-decode.png" alt=""></div>
+        </div>
+    </div>
+</body>
+</html>
