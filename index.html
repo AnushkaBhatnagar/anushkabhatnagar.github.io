@@ -41,7 +41,7 @@
         .hero-image {
             width: 400px;
             height: 300px;
-            border-radius: 12px;
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -108,17 +108,17 @@
 
         .section-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 44px;
+            font-size: 36px;
             color: #2c2c2c;
             font-weight: 600;
             margin-bottom: 60px;
         }
 
         .education-item {
-            margin-bottom: 75px;
+            margin-bottom: 65px;
             display: flex;
-            align-items: flex-start;
-            gap: 35px;
+            align-items: center;
+            gap: 25px;
         }
 
         .education-item.reverse {
@@ -130,9 +130,9 @@
         }
 
         .education-image {
-            width: 275px;
-            height: 180px;
-            border-radius: 12px;
+            width: 280px;
+            height: 185px;
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -147,7 +147,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 0;
         }
 
         .university-header {
@@ -220,7 +220,7 @@
         }
 
         .main-heading {
-            font-size: 24px;
+            font-size: 28px;
             color: #2c2c2c;
             font-weight: 400;
             line-height: 1.4;
@@ -304,6 +304,7 @@
         /* Research Publications Section */
         .research-section {
             margin-top: 80px;
+            margin-bottom: 80px;
             max-width: 1200px;
         }
 
@@ -373,6 +374,74 @@
         .work-section {
             margin-top: 80px;
             max-width: 1200px;
+        }
+
+        .work-section:last-of-type {
+            margin-bottom: 80px;
+        }
+
+        /* Volunteering items — education-style layout */
+        .volunteer-item {
+            margin-bottom: 75px;
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .volunteer-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .volunteer-image {
+            width: 350px;
+            height: 230px;
+            border-radius: 0;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .volunteer-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        .volunteer-content {
+            flex: 1;
+        }
+
+        .volunteer-header {
+            font-family: 'Cardo', serif;
+            font-size: 22px;
+            color: #2c2c2c;
+            font-style: normal;
+            margin-bottom: 6px;
+        }
+
+        .volunteer-title {
+            font-family: 'Cardo', serif;
+            font-size: 17px;
+            color: #8B7EC8;
+            font-style: italic;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .volunteer-date {
+            font-family: 'Cardo', serif;
+            font-size: 17px;
+            color: #6b7280;
+            font-style: normal;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .volunteer-desc {
+            font-family: 'Cardo', serif;
+            font-size: 17px;
+            color: #4a4a4a;
+            line-height: 1.4;
         }
 
         .company-link {
@@ -772,11 +841,35 @@
             }
 
             .main-heading {
-                font-size: 22px;
+                font-size: 24px;
+            }
+
+            .description {
+                font-size: 18px;
             }
 
             .section-title {
-                font-size: 36px;
+                font-size: 30px;
+            }
+
+            .university-header, .location {
+                font-size: 20px;
+            }
+
+            .degree, .specialization {
+                font-size: 16px;
+            }
+
+            .project-name {
+                font-size: 20px;
+            }
+
+            .project-description {
+                font-size: 14px;
+            }
+
+            .publication-title {
+                font-size: 16px;
             }
 
             .projects-grid {
@@ -795,6 +888,19 @@
             }
 
             .education-image {
+                width: 100%;
+                max-width: 400px;
+                height: 200px;
+                margin: 0 auto;
+            }
+
+            .volunteer-item {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .volunteer-image {
                 width: 100%;
                 max-width: 400px;
                 height: 200px;
@@ -820,11 +926,11 @@
             }
 
             .main-heading {
-                font-size: 28px;
+                font-size: 20px;
             }
 
             .section-title {
-                font-size: 28px;
+                font-size: 24px;
                 margin-bottom: 40px;
             }
 
@@ -891,7 +997,7 @@
         .footer-text {
             font-family: 'Cardo', serif;
             font-size: 14px;
-            color: #4a4a4a;
+            color: #6b7280;
             margin: 0;
         }
 
@@ -935,7 +1041,8 @@
         <div class="hero-content">
             <p class="main-heading">Hey, I'm Anushka Bhatnagar</p>
 
-            <p class="description">I'm a Full-Stack and AI Developer <br>I Innovate through Design</p>
+            <p class="description">I'm a Full-Stack and AI Developer</p>
+            <p class="description">I Innovate through Design</p>
 
             <div class="hero-about">
                 <p class="about-text">I'm a Graduate Computer Science student at Columbia University, passionate about innovation and design in technology.</p>
@@ -949,12 +1056,12 @@
                 <span class="hero-links-divider">·</span>
                 <a href="https://linkedin.com/in/anushkabhatnagar" target="_blank">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452H16.893V14.883C16.893 13.555 16.866 11.846 15.041 11.846C13.188 11.846 12.905 13.291 12.905 14.785V20.452H9.351V9H12.765V10.561H12.811C13.288 9.661 14.448 8.711 16.181 8.711C19.782 8.711 20.448 11.081 20.448 14.166V20.452H20.447ZM5.337 7.433C4.193 7.433 3.274 6.507 3.274 5.366C3.274 4.224 4.194 3.299 5.337 3.299C6.477 3.299 7.401 4.224 7.401 5.366C7.401 6.507 6.476 7.433 5.337 7.433ZM7.119 20.452H3.555V9H7.119V20.452ZM22.225 0H1.771C0.792 0 0 0.774 0 1.729V22.271C0 23.227 0.792 24 1.771 24H22.222C23.2 24 24 23.227 24 22.271V1.729C24 0.774 23.2 0 22.222 0H22.225Z"/></svg>
-                    LinkedIn
+                    /anushkabhatnagar
                 </a>
                 <span class="hero-links-divider">·</span>
                 <a href="https://github.com/AnushkaBhatnagar" target="_blank">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12C0 17.31 3.435 21.795 8.205 23.385C8.805 23.49 9.03 23.13 9.03 22.815C9.03 22.53 9.015 21.585 9.015 20.58C6 21.135 5.22 19.845 4.98 19.17C4.845 18.825 4.26 17.76 3.75 17.475C3.33 17.25 2.73 16.695 3.735 16.68C4.68 16.665 5.355 17.55 5.58 17.91C6.66 19.725 8.385 19.215 9.075 18.9C9.18 18.12 9.495 17.595 9.84 17.295C7.17 16.995 4.38 15.96 4.38 11.37C4.38 10.065 4.845 8.985 5.61 8.145C5.49 7.845 5.07 6.615 5.73 4.965C5.73 4.965 6.735 4.65 9.03 6.195C9.99 5.925 11.01 5.79 12.03 5.79C13.05 5.79 14.07 5.925 15.03 6.195C17.325 4.635 18.33 4.965 18.33 4.965C18.99 6.615 18.57 7.845 18.45 8.145C19.215 8.985 19.68 10.05 19.68 11.37C19.68 15.975 16.875 16.995 14.205 17.295C14.64 17.67 15.015 18.39 15.015 19.515C15.015 21.12 15 22.41 15 22.815C15 23.13 15.225 23.505 15.825 23.385C18.2072 22.5808 20.2773 21.0498 21.7438 19.0074C23.2103 16.9649 23.9994 14.5143 24 12C24 5.37 18.63 0 12 0Z"/></svg>
-                    GitHub
+                    /anushkabhatnagar
                 </a>
             </div>
         </div>
@@ -973,7 +1080,7 @@
                 <div class="university-header">Columbia University, 2024 - 2025</div>
                 <div class="location">New York City, United States</div>
                 <div class="degree">Master of Science in Computer Science</div>
-                <div class="specialization">Personalized Track Focused on User-Centered Design and Human-Computer Interaction using Generative AI</div>
+                <div class="specialization">Personalized Track Focused on Human-Computer Interaction, AI, User-Centered Design</div>
             </div>
             <div class="education-image">
                 <img src="images/columbia.jpeg" alt="Columbia University">
@@ -1001,7 +1108,19 @@
         <div class="work-list-hr">
             <div class="work-entry">
                 <div class="entry-header">
-                    <span>Computational Design Lab, Columbia University</span>
+                    <a href="https://www.akify.ai/" target="_blank" class="company-link"><span>Akify AI</span><span class="company-arrow">↗</span></a>
+                    <span class="entry-location">New York City, US</span>
+                </div>
+                <div class="entry-subheader">
+                    <span class="entry-title">AI Developer</span>
+                    <span class="entry-date">February 2026 - Present</span>
+                </div>
+                <div class="entry-mentor">Reporting directly to the Founders</div>
+                <div class="entry-desc">Building an intelligent multimodal RAG pipeline on Firebase with Vertex AI, enabling semantic downstream retrieval; Developing an ACL-compliant async cron queue decoupling Vertex AI inference from data with confidence reasoning.</div>
+            </div>
+            <div class="work-entry">
+                <div class="entry-header">
+                    <a href="https://www.cs.columbia.edu/~chilton/index.html" target="_blank" class="company-link"><span>Computational Design Lab, Columbia University</span><span class="company-arrow">↗</span></a>
                     <span class="entry-location">New York, US</span>
                 </div>
                 <div class="entry-subheader">
@@ -1021,7 +1140,7 @@
                     <span class="entry-date">January 2025 - July 2025</span>
                 </div>
                 <div class="entry-mentor">Reported directly to the Founder, <a href="https://www.linkedin.com/in/alexis-chestnov/" target="_blank" class="founder-link">Alexis Haber</a>, as a founding engineer</div>
-                <div class="entry-desc">Built the full-stack for the application using React, JavaScript, and Flask, performing API integrations, designing the database schema, and managing users' information; deployed and secured on AWS through EC2, S3, load balancers, Cognito, Rekognition, and RDS.</div>
+                <div class="entry-desc">Built the full-stack for the application using React, JavaScript, and Flask, performing API integrations, designing the database schema, and managing users' information; Deployed and secured on AWS through EC2, S3, load balancers, Cognito, Rekognition, and RDS.</div>
             </div>
             <div class="work-entry">
                 <div class="entry-header">
@@ -1038,7 +1157,7 @@
     </div>
 
     <div class="projects-section">
-        <h2 class="section-title">MY PROJECTS</h2>
+        <h2 class="section-title">PROJECTS</h2>
         <p class="projects-subtitle">
             <a href="https://github.com/AnushkaBhatnagar/" target="_blank" class="view-all-link">View All Projects on GitHub →</a>
         </p>
@@ -1202,6 +1321,57 @@
                 <span>The Data, Agents, and Processes Lab (DAPLab), Columbia University</span>
                 <span class="company-arrow">↗</span>
             </a>
+        </div>
+    </div>
+
+    <div class="work-section">
+        <h2 class="section-title">LEADERSHIP ACTIVITIES</h2>
+        <div class="work-list-hr">
+            <div class="work-entry">
+                <div class="entry-header">
+                    <span>Microsoft</span>
+                </div>
+                <div class="entry-subheader">
+                    <span class="entry-title">Gold Microsoft Learn Student Ambassador</span>
+                    <span class="entry-date">October 2021 - August 2024</span>
+                </div>
+                <div class="entry-desc">Mentor for Imagine Cup 2024, Judge for Imagine Cup Junior AI for Good Finals 2024, Judge for Imagine Cup Junior Finals 2023, Judge for Ambassador AI Projects 2023, Panelist for Microsoft University Recruiting Panel, Windows Insider, Team Lead for the Ambassador Project, Speaker at various colleges across India, Mentor for MLSA's Mentorship Program, Contributed to the Social Impact Project in the Education domain</div>
+            </div>
+            <div class="work-entry">
+                <div class="entry-header">
+                    <span>Google</span>
+                </div>
+                <div class="entry-subheader">
+                    <span class="entry-title">Google Cloud Arcade Facilitator</span>
+                    <span class="entry-date">July 2023 - September 2023</span>
+                </div>
+                <div class="entry-desc">Mentored 700 students from around the world learn cloud skills like computing, big data and AI/ML on GCP.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="work-section">
+        <h2 class="section-title">VOLUNTEERING</h2>
+
+        <div class="volunteer-item">
+            <div class="volunteer-image">
+                <img src="images/volunteering/enactus.jpg" alt="Enactus MPSTME">
+            </div>
+            <div class="volunteer-content">
+                <div class="volunteer-header"><a href="https://www.enactusmpstme.org/" target="_blank" class="company-link"><span>Enactus MPSTME</span><span class="company-arrow">↗</span></a></div>
+                <div class="volunteer-title">Head Of Research And Development</div>
+                <div class="volunteer-date">August 2021 - April 2023</div>
+                <div class="volunteer-desc">Initiated and worked on <strong>Project Rupaantar</strong>, which aims at using coconut shells and coir as well as flower waste to make sustainable and biodegradable products such as cutlery, rugs, pots and incense sticks. We actively partnered with manufacturers and beneficiaries with the belief that dedicated entrepreneurial action can transform and shape lives in a sustainable manner. <br><br>Also represented <strong>Project Shilpkaar</strong>, along with 3 other team members, in the KPMG Ideation Challenge, 2021, and cleared the first two rounds of the same.</div>
+            </div>
+        </div>
+
+        <div class="volunteer-item">
+            <div class="volunteer-content">
+                <div class="volunteer-header"><a href="https://girlup.org/" target="_blank" class="company-link"><span>Girl Up Neev, United Nations Foundation</span><span class="company-arrow">↗</span></a></div>
+                <div class="volunteer-title">Head of Content and Research</div>
+                <div class="volunteer-date">July 2021 - July 2023</div>
+                <div class="volunteer-desc">Led a team of 20+ members, where we together researched and developed agendas pertaining to significant issues to raise awareness, and also created content for our social media channels. I have also participated in donation drives as a field volunteer.</div>
+            </div>
         </div>
     </div>
 
