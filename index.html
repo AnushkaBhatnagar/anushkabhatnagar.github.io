@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anushka Bhatnagar</title>
+    <meta name="description" content="Anushka Bhatnagar, Columbia University">
+    <meta property="og:title" content="Anushka Bhatnagar">
+    <meta property="og:description" content="Full-Stack & AI Developer, Columbia University. Innovating Through Design.">
+    <meta property="og:image" content="https://anushkabhatnagar.github.io/images/Anushka.jpg">
+    <meta property="og:url" content="https://anushkabhatnagar.github.io">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Anushka Bhatnagar">
+    <meta name="twitter:description" content="Full-Stack & AI Developer, Columbia University. Innovating Through Design.">
+    <meta name="twitter:image" content="https://anushkabhatnagar.github.io/images/Anushka.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/d3-array@3/dist/d3-array.min.js"></script>
-    <script src="https://unpkg.com/d3-geo@3/dist/d3-geo.min.js"></script>
-    <script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+    <script defer src="https://unpkg.com/d3-array@3/dist/d3-array.min.js"></script>
+    <script defer src="https://unpkg.com/d3-geo@3/dist/d3-geo.min.js"></script>
+    <script defer src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
     <style>
         /* Smooth scrolling for anchor links */
         html {
@@ -26,6 +36,9 @@
             font-family: 'Cardo', serif;
             background: linear-gradient(135deg, #fff6ff 0%, #c1d6ff 100%);
             min-height: 100vh;
+        }
+
+        .content-wrapper {
             padding: 80px 80px 0 80px;
         }
 
@@ -697,13 +710,36 @@
         }
 
         .contribution-bullet:before {
-            content: "▸";
+            content: "·";
             color: #8B7EC8;
             font-weight: bold;
             position: absolute;
             left: 0;
             top: 0;
             font-size: 14px;
+        }
+
+        .contributed-subtitle-sm {
+            margin-top: 40px;
+            font-size: 20px;
+        }
+
+        .contribution-bullet-item {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .contribution-bullet-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contributed-subtitle-member {
+            margin-top: 40px;
+        }
+
+        .contribution-bullet-member {
+            font-size: 16px;
+            margin-bottom: 0;
         }
 
         /* Flight Map */
@@ -724,6 +760,19 @@
             width: 100%;
             height: auto;
             opacity: 1;
+            position: relative;
+        }
+
+        .map-loading {
+            font-family: 'Cardo', serif;
+            font-size: 14px;
+            color: #6b7280;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        body.dark-mode .map-loading {
+            color: #8a879a;
         }
 
         body.dark-mode .flight-map-text {
@@ -749,7 +798,7 @@
 
         /* Responsive Design */
         @media (max-width: 1024px) {
-            body {
+            .content-wrapper {
                 padding: 80px 60px 0 60px;
             }
 
@@ -773,7 +822,7 @@
         }
 
         @media (max-width: 768px) {
-            body {
+            .content-wrapper {
                 padding: 80px 40px 0 40px;
             }
 
@@ -881,7 +930,7 @@
         }
 
         @media (max-width: 480px) {
-            body {
+            .content-wrapper {
                 padding: 80px 20px 0 20px;
             }
 
@@ -941,9 +990,6 @@
             background: rgba(255, 255, 255, 0.1);
             padding: 30px 0;
             text-align: center;
-            margin-top: 0;
-            width: calc(100% + 160px);
-            margin-left: -80px;
         }
 
         .footer-text {
@@ -953,26 +999,7 @@
             margin: 0;
         }
 
-        @media (max-width: 1024px) {
-            .footer {
-                width: calc(100% + 120px);
-                margin-left: -60px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .footer {
-                width: calc(100% + 80px);
-                margin-left: -40px;
-            }
-        }
-
         @media (max-width: 480px) {
-            .footer {
-                width: calc(100% + 40px);
-                margin-left: -20px;
-            }
-
             .footer-text {
                 font-size: 12px;
             }
@@ -1094,7 +1121,7 @@
 
         .nav-dropdown-trigger {
             cursor: pointer;
-            padding: 4px 10px;
+            padding: 3px 8px;
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -1151,6 +1178,114 @@
 
             .nav-dropdown-menu a {
                 font-size: 12px;
+            }
+        }
+
+        /* Mobile hamburger menu */
+        .hamburger-btn {
+            display: none;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #2c2c2c;
+            padding: 6px 8px;
+            font-size: 20px;
+            line-height: 1;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .hamburger-btn:hover {
+            opacity: 0.7;
+        }
+
+        body.dark-mode .hamburger-btn {
+            color: #e8e6f0;
+            background: rgba(26, 26, 46, 0.85);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 2000;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .mobile-menu-overlay.open {
+            display: flex;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        body.dark-mode .mobile-menu-overlay {
+            background: rgba(18, 18, 35, 0.95);
+        }
+
+        .mobile-menu-overlay a {
+            font-family: 'Cardo', serif;
+            font-size: 22px;
+            color: #2c2c2c;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-overlay a:hover {
+            color: #8B7EC8;
+        }
+
+        body.dark-mode .mobile-menu-overlay a {
+            color: #e8e6f0;
+        }
+
+        body.dark-mode .mobile-menu-overlay a:hover {
+            color: #a89adb;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #2c2c2c;
+            cursor: pointer;
+            padding: 4px 8px;
+            line-height: 1;
+        }
+
+        .mobile-menu-close:hover {
+            opacity: 0.7;
+        }
+
+        body.dark-mode .mobile-menu-close {
+            color: #e8e6f0;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger-btn {
+                display: flex;
+            }
+
+            .nav-dropdown {
+                display: none;
             }
         }
 
@@ -1222,6 +1357,9 @@
                 </div>
             </li>
             <li>
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">&#9776;</button>
+            </li>
+            <li>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                     <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                     <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -1230,9 +1368,21 @@
         </ul>
     </nav>
 
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+        <a href="#top">About</a>
+        <a href="#education">Education</a>
+        <a href="#work">Work</a>
+        <a href="#projects">Projects</a>
+        <a href="#research">Research</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#volunteering">Volunteering</a>
+    </div>
+
+    <div class="content-wrapper">
     <div class="hero-section">
         <div class="hero-image">
-            <img src="images/Anushka.jpg" alt="">
+            <img src="images/Anushka.jpg" alt="Anushka Bhatnagar">
         </div>
         <div class="hero-content">
             <p class="main-heading">Hey, I'm Anushka Bhatnagar</p>
@@ -1306,8 +1456,8 @@
     </div>
 
     <div class="flight-map-wrapper">
-        <p class="flight-map-text">I live in the 3 best cities of the world</p>
-        <div id="flightMap"></div>
+        <p class="flight-map-text">I live in the 3 best cities of the world:</p>
+        <div id="flightMap"><p class="map-loading" id="mapLoading">Loading map...</p></div>
     </div>
 
     <!-- ORIGINAL: Resume-style with right-aligned location & date -->
@@ -1478,7 +1628,9 @@
                 </div>
             </div>
         </div>
-         <div class="research-section" id="research">
+    </div>
+
+    <div class="research-section" id="research">
         <h2 class="section-title">RESEARCH PUBLICATIONS</h2>
         
         <div class="publication-card">
@@ -1516,20 +1668,28 @@
                 </div>
             </div>
         </div>
-        <h3 class="contributed-subtitle" style="margin-top: 40px;">Member Of:</h3>
-        
-        <div class="contribution-bullet" style="margin-bottom: 0; font-size: 16px;">
+        <h3 class="contributed-subtitle contributed-subtitle-member">Member Of:</h3>
+
+        <div class="contribution-bullet contribution-bullet-member">
             <a href="https://www.cs.columbia.edu/~chilton/" target="_blank" class="company-link">
                 <span>Computational Design Lab, Columbia University</span>
                 <span class="company-arrow">↗</span>
             </a>
         </div>
-        <div class="contribution-bullet" style="margin-bottom: 0; font-size: 16px;">
+        <div class="contribution-bullet contribution-bullet-member">
             <a href="https://daplab.cs.columbia.edu/" target="_blank" class="company-link">
                 <span>The Data, Agents, and Processes Lab (DAPLab), Columbia University</span>
                 <span class="company-arrow">↗</span>
             </a>
         </div>
+
+        <h3 class="contributed-subtitle contributed-subtitle-sm">Teaching Assistantships:</h3>
+
+        <div class="contribution-bullet contribution-bullet-item">UI/UX Design, Spring'26 - Professor Celeste Layne, Columbia University (Head TA)</div>
+        <div class="contribution-bullet contribution-bullet-item">Innovation and Design Lab, Fall'25 - Professor Gary Zamchick, Columbia University</div>
+        <div class="contribution-bullet contribution-bullet-item">Programming Languages and Translators, Fall'25 - Professor Hubertus Franke, Columbia University</div>
+        <div class="contribution-bullet contribution-bullet-item">UI/UX Design, Spring'25 - Professor Lydia Chilton, Columbia University</div>
+        <div class="contribution-bullet contribution-bullet-item">C/C++ Programming Workshop, Spring'22, NMIMS University</div>
     </div>
 
     <div class="work-section" id="leadership">
@@ -1582,6 +1742,7 @@
             </div>
         </div>
     </div>
+    </div>
 
     <footer class="footer">
         <p class="footer-text">Made by Anushka Bhatnagar. Last Updated March 2026.</p>
@@ -1593,6 +1754,25 @@
     </a>
 
     <script>
+        // ===== MOBILE MENU =====
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
         // ===== SCROLL TO TOP ON LOAD =====
         if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
         if (window.location.hash) history.replaceState(null, '', window.location.pathname);
@@ -1624,10 +1804,13 @@
             return isDark ? darkStops : lightStops;
         }
 
+        const themeCallbacks = [];
+
         function applyTheme() {
             document.body.classList.toggle('dark-mode', isDark);
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
             updateGradient();
+            themeCallbacks.forEach(fn => fn());
         }
 
         // Apply immediately to prevent flash
@@ -1685,9 +1868,11 @@
             const arcColor = () => isDark ? 'rgba(168,154,219,0.5)' : 'rgba(122,107,170,0.4)';
 
             // Load and render land
+            const mapLoading = document.getElementById('mapLoading');
             fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json')
                 .then(r => r.json())
                 .then(topo => {
+                    if (mapLoading) mapLoading.remove();
                     const land = topojson.feature(topo, topo.objects.land);
                     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
                     path.setAttribute('d', pathGen(land));
@@ -1696,6 +1881,9 @@
                     path.setAttribute('stroke-width', '0.5');
                     path.id = 'landPath';
                     landGroup.appendChild(path);
+                })
+                .catch(() => {
+                    if (mapLoading) mapLoading.textContent = 'Could not load map.';
                 });
 
             // Draw arcs as great-circle interpolations
@@ -1760,11 +1948,7 @@
                 drawMarkers();
             }
 
-            const _originalApplyTheme = applyTheme;
-            applyTheme = function() {
-                _originalApplyTheme();
-                updateMapTheme();
-            };
+            themeCallbacks.push(updateMapTheme);
         })();
 
         // ===== SMOOTH SCROLL GRADIENT MORPH =====
