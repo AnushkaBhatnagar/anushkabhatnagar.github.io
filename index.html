@@ -28,12 +28,14 @@
         .hero-section {
             display: flex;
             align-items: center;
-            min-height: 80vh;
-            gap: 60px;
+            gap: 20px;
+            min-height: calc(100vh - 100px);
         }
 
         .hero-content {
             flex: 1;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         .hero-image {
@@ -57,30 +59,15 @@
             object-fit: cover;
         }
 
-        /* About Section */
-        .about-section {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            text-align: left;
-            margin: 0;
-            max-width: 1200px;
-            width: 100%;
-        }
+        /* About Section (now inside hero) */
 
         .about-text {
             font-family: 'Cardo', serif;
-            font-size: 20px;
+            font-size: 16px;
             color: #4a4a4a;
             font-weight: 400;
             line-height: 1.5;
             margin-bottom: 20px;
-        }
-
-        .about-text:last-child {
-            margin-bottom: 40px;
         }
 
         .skills-section {
@@ -233,21 +220,17 @@
         }
 
         .main-heading {
-            font-size: 48px;
+            font-size: 24px;
             color: #2c2c2c;
             font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 40px;
+            line-height: 1.4;
+            margin-bottom: 20px;
             opacity: 0;
             animation: fadeInUp 1s ease-out 0.2s forwards;
         }
 
-        .name {
-            margin-left: 0;
-        }
-
         .description {
-            font-size: 22px;
+            font-size: 20px;
             color: #4a4a4a;
             font-weight: 400;
             line-height: 1.4;
@@ -256,13 +239,39 @@
             animation: fadeInUp 1s ease-out 0.6s forwards;
         }
 
-        .tagline {
-            font-size: 22px;
-            color: #4a4a4a;
-            font-weight: 400;
-            line-height: 1.4;
+        .hero-about {
             opacity: 0;
             animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .hero-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.1s forwards;
+        }
+
+        .hero-links a {
+            font-family: 'Cardo', serif;
+            font-size: 13px;
+            color: #6b7280;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .hero-links a:hover {
+            color: #8B7EC8;
+        }
+
+        .hero-links-divider {
+            color: #6b7280;
+            font-size: 13px;
         }
 
         /* Animation keyframes */
@@ -360,43 +369,10 @@
             color: #2c2c2c;
         }
 
-        /* Work Section */
+        /* Work Section — shared */
         .work-section {
             margin-top: 80px;
             max-width: 1200px;
-        }
-
-        .work-item {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
-            padding: 0;
-            transition: all 0.3s ease;
-            margin-bottom: 16px;
-            border: 1px solid rgba(139, 126, 200, 0.2);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        }
-
-        .work-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(139, 126, 200, 0.12);
-            border-color: rgba(139, 126, 200, 0.4);
-        }
-
-        .work-content {
-            padding: 16px 18px;
-        }
-
-        .work-header {
-            font-family: 'Cardo', serif;
-            font-size: 16px;
-            color: #2c2c2c;
-            font-weight: 600;
-            margin-bottom: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 6px;
         }
 
         .company-link {
@@ -417,15 +393,6 @@
             opacity: 0.6;
         }
 
-        .founder-line {
-            font-family: 'Cardo', serif;
-            font-size: 13px;
-            color: #6b7280;
-            font-style: italic;
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-
         .founder-link {
             color: #8B7EC8;
             text-decoration: none;
@@ -436,76 +403,79 @@
             opacity: 0.7;
         }
 
-        .work-location {
-            font-family: 'Cardo', serif;
-            font-size: 12px;
-            color: #6b7280;
-            font-weight: 400;
-            background: rgba(139, 126, 200, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-            white-space: nowrap;
+        /* Style 1: Horizontal rule divider */
+        .work-list-hr .work-entry {
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(139, 126, 200, 0.2);
         }
 
-        .work-subheader {
+        .work-list-hr .work-entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .work-entry .entry-header {
+            font-family: 'Cardo', serif;
+            font-size: 16px;
+            color: #2c2c2c;
+            font-weight: 600;
+            margin-bottom: 2px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
+            align-items: flex-start;
             flex-wrap: wrap;
             gap: 6px;
         }
 
-        .job-title {
+        .work-entry .entry-location {
+            font-family: 'Cardo', serif;
+            font-size: 13px;
+            color: #6b7280;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+
+        .work-entry .entry-subheader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .work-entry .entry-title {
             font-family: 'Cardo', serif;
             font-size: 14px;
             color: #8B7EC8;
             font-weight: 600;
         }
 
-        .work-date {
+        .work-entry .entry-date {
             font-family: 'Cardo', serif;
-            font-size: 11px;
+            font-size: 13px;
             color: #6b7280;
-            font-weight: 500;
-            background: rgba(107, 114, 128, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-            white-space: nowrap;
+            font-weight: 400;
         }
 
-        .work-description {
+        .work-entry .entry-mentor {
+            font-family: 'Cardo', serif;
+            font-size: 13px;
+            color: #6b7280;
+            font-style: italic;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .work-entry .entry-desc {
             font-family: 'Cardo', serif;
             font-size: 13px;
             color: #4a4a4a;
             line-height: 1.4;
         }
 
-        .work-description ul {
-            margin: 0;
-            padding-left: 0;
-            list-style: none;
-        }
-
-        .work-description li {
-            margin-bottom: 6px;
-            padding-left: 16px;
-            position: relative;
-        }
-
-        .work-description li:before {
-            content: "▸";
-            color: #8B7EC8;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-size: 12px;
-        }
-
-        .work-description li:last-child {
-            margin-bottom: 0;
-        }
 
         /* Projects Section */
         .projects-section {
@@ -766,6 +736,7 @@
 
             .hero-section {
                 gap: 40px;
+                min-height: calc(100vh - 80px);
             }
 
             .hero-image {
@@ -791,7 +762,7 @@
                 flex-direction: column;
                 text-align: center;
                 gap: 40px;
-                min-height: auto;
+                min-height: calc(100vh - 80px);
             }
 
             .hero-image {
@@ -801,7 +772,7 @@
             }
 
             .main-heading {
-                font-size: 36px;
+                font-size: 22px;
             }
 
             .section-title {
@@ -907,94 +878,6 @@
             }
         }
 
-        /* Contact Section */
-        .contact-section {
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            margin: 0;
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        .contact-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 48px;
-            color: #2c2c2c;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 60px;
-        }
-
-        .contact-info {
-            margin-bottom: 30px;
-        }
-
-        .contact-label {
-            font-family: 'Cardo', serif;
-            font-size: 20px;
-            color: #2c2c2c;
-            margin-bottom: 12px;
-        }
-
-        .email-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .email-icon {
-            flex-shrink: 0;
-            width: 22px;
-            height: 17px;
-        }
-
-        .email-link {
-            font-family: 'Cardo', serif;
-            font-size: 20px;
-            color: #4a4a4a;
-            font-style: italic;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .email-link:hover {
-            color: #8B7EC8;
-        }
-
-        /* Responsive updates for contact section */
-        @media (max-width: 1024px) {
-        }
-
-        @media (max-width: 768px) {
-            .contact-section {
-                align-items: flex-start;
-                text-align: left;
-            }
-
-            .email-container {
-                justify-content: flex-start;
-            }
-        }
-
-        @media (max-width: 480px) {
-
-            .contact-label {
-                font-size: 18px;
-            }
-
-            .email-link {
-                font-size: 16px;
-            }
-
-            .email-icon {
-                width: 18px;
-                height: 14px;
-            }
-        }
-
         /* Footer */
         .footer {
             background: rgba(255, 255, 255, 0.1);
@@ -1042,39 +925,46 @@
     <nav class="navbar">
         <ul class="nav-links">
             <li><a href="#">About</a></li>
-            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <div class="hero-section">
-        <div class="hero-content">
-            <h1 class="main-heading">
-                Hey, I'm<br>
-                <span class="name">Anushka Bhatnagar</span>
-            </h1>
-
-            <p class="description">I'm a Full-Stack and AI Developer</p>
-
-            <p class="tagline">I Innovate through Design</p>
-        </div>
         <div class="hero-image">
             <img src="images/Anushka.jpg" alt="">
         </div>
+        <div class="hero-content">
+            <p class="main-heading">Hey, I'm Anushka Bhatnagar</p>
 
-    </div>
+            <p class="description">I'm a Full-Stack and AI Developer <br>I Innovate through Design</p>
 
-    <div class="about-section">
-        <p class="about-text">I'm a Graduate Computer Science student at Columbia University, passionate about innovation and design in technology.</p>
-        <p class="about-text">I love working at the intersection of Generative AI and Human-Computer Interaction, building accessible and inclusive UI/UX designs, and developing interactive websites and digital experiences.</p>
-        
-        <div class="skills-section">
-            <h3 class="skills-title">Skills:</h3>
-            <p class="skills-text"><strong>Languages:</strong> Java, C, C++, Python, R, MATLAB, HTML, CSS, JavaScript, React, Angular, SQL, Flask, JSON, jQuery</p>
-            <p class="skills-text"><strong>Tools:</strong> Git, GitHub, Google Cloud, Microsoft Azure, AWS, MySQL, PostgreSQL, SQLAlchemy, Power BI, Figma</p>
-            <p class="skills-text"><strong>Generative AI:</strong> LLM/VLM Integrations, Model Context Protocols, Prompt Engineering, RAG, LangChain, Model Fine-Tuning</p>
+            <div class="hero-about">
+                <p class="about-text">I'm a Graduate Computer Science student at Columbia University, passionate about innovation and design in technology.</p>
+                <p class="about-text">I love working at the intersection of Generative AI and Human-Computer Interaction, building accessible and inclusive UI/UX designs, and developing interactive websites and digital experiences.</p>
+            </div>
+            <div class="hero-links">
+                <a href="mailto:anushka.bhatnagar@columbia.edu">
+                    <svg width="14" height="11" viewBox="0 0 20 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18 0H2C0.9 0 0.01 0.9 0.01 2L0 14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM18 4L10 9L2 4V2L10 7L18 2V4Z"/></svg>
+                    anushka.bhatnagar@columbia.edu
+                </a>
+                <span class="hero-links-divider">·</span>
+                <a href="https://linkedin.com/in/anushkabhatnagar" target="_blank">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452H16.893V14.883C16.893 13.555 16.866 11.846 15.041 11.846C13.188 11.846 12.905 13.291 12.905 14.785V20.452H9.351V9H12.765V10.561H12.811C13.288 9.661 14.448 8.711 16.181 8.711C19.782 8.711 20.448 11.081 20.448 14.166V20.452H20.447ZM5.337 7.433C4.193 7.433 3.274 6.507 3.274 5.366C3.274 4.224 4.194 3.299 5.337 3.299C6.477 3.299 7.401 4.224 7.401 5.366C7.401 6.507 6.476 7.433 5.337 7.433ZM7.119 20.452H3.555V9H7.119V20.452ZM22.225 0H1.771C0.792 0 0 0.774 0 1.729V22.271C0 23.227 0.792 24 1.771 24H22.222C23.2 24 24 23.227 24 22.271V1.729C24 0.774 23.2 0 22.222 0H22.225Z"/></svg>
+                    LinkedIn
+                </a>
+                <span class="hero-links-divider">·</span>
+                <a href="https://github.com/AnushkaBhatnagar" target="_blank">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12C0 17.31 3.435 21.795 8.205 23.385C8.805 23.49 9.03 23.13 9.03 22.815C9.03 22.53 9.015 21.585 9.015 20.58C6 21.135 5.22 19.845 4.98 19.17C4.845 18.825 4.26 17.76 3.75 17.475C3.33 17.25 2.73 16.695 3.735 16.68C4.68 16.665 5.355 17.55 5.58 17.91C6.66 19.725 8.385 19.215 9.075 18.9C9.18 18.12 9.495 17.595 9.84 17.295C7.17 16.995 4.38 15.96 4.38 11.37C4.38 10.065 4.845 8.985 5.61 8.145C5.49 7.845 5.07 6.615 5.73 4.965C5.73 4.965 6.735 4.65 9.03 6.195C9.99 5.925 11.01 5.79 12.03 5.79C13.05 5.79 14.07 5.925 15.03 6.195C17.325 4.635 18.33 4.965 18.33 4.965C18.99 6.615 18.57 7.845 18.45 8.145C19.215 8.985 19.68 10.05 19.68 11.37C19.68 15.975 16.875 16.995 14.205 17.295C14.64 17.67 15.015 18.39 15.015 19.515C15.015 21.12 15 22.41 15 22.815C15 23.13 15.225 23.505 15.825 23.385C18.2072 22.5808 20.2773 21.0498 21.7438 19.0074C23.2103 16.9649 23.9994 14.5143 24 12C24 5.37 18.63 0 12 0Z"/></svg>
+                    GitHub
+                </a>
+            </div>
         </div>
     </div>
-
+    <div class="skills-section">
+        <h3 class="skills-title">Skills:</h3>
+        <p class="skills-text"><strong>Languages:</strong> Java, Python, C, C++, HTML, CSS, JavaScript, TypeScript, SQL, R, MATLAB</p>
+        <p class="skills-text"><strong>Frameworks and Libraries:</strong> React, Angular, Flask, Node.js, jQuery, SQLAlchemy, LangChain, RAG, MCP</p>
+        <p class="skills-text"><strong>Cloud, Databases and Tools:</strong> AWS, Google Cloud, Azure, PostgreSQL, MySQL, Git, GitHub, Power BI, Adobe, Figma</p>
+    </div>
     <div class="education-section">
         <h2 class="section-title">EDUCATION</h2>
         
@@ -1105,66 +995,44 @@
 
     </div>
 
+    <!-- ORIGINAL: Resume-style with right-aligned location & date -->
     <div class="work-section">
         <h2 class="section-title">WORK</h2>
-        
-        <div class="work-item">
-            <div class="work-content">
-                <div class="work-header">
+        <div class="work-list-hr">
+            <div class="work-entry">
+                <div class="entry-header">
                     <span>Computational Design Lab, Columbia University</span>
-                    <span class="work-location">New York, US</span>
+                    <span class="entry-location">New York, US</span>
                 </div>
-                <div class="work-subheader">
-                    <span class="job-title">Graduate Research Assistant</span>
-                    <span class="work-date">May 2025 - Present</span>
+                <div class="entry-subheader">
+                    <span class="entry-title">Graduate Researcher</span>
+                    <span class="entry-date">January 2025 - Present</span>
                 </div>
-                <div class="founder-line">
-                    Working under PI <a href="https://www.cs.columbia.edu/~chilton/chilton.html" target="_blank" class="founder-link">Professor Lydia Chilton</a>, mentored by <a href="https://vivian-liu.com/" target="_blank" class="founder-link">Vivian Liu</a>
-                </div>
-                <div class="work-description">
-                    Designing frameworks and visual interfaces that expose developer controls over AI-generated asynchronous interaction parameters and algorithmic logic flows.
-                </div>
+                <div class="entry-mentor">Mentored by PI <a href="https://www.cs.columbia.edu/~chilton/chilton.html" target="_blank" class="founder-link">Professor Lydia Chilton</a></div>
+                <div class="entry-desc">Designing frameworks and visual interfaces that expose developer controls over AI-generated asynchronous interaction parameters and algorithmic logic flows.</div>
             </div>
-        </div>
-
-        <div class="work-item">
-            <div class="work-content">
-                <div class="work-header">
-                    <a href="https://www.mayahdesign.com/beta" target="_blank" class="company-link">
-                        <span>Mayah Design</span>
-                        <span class="company-arrow">↗</span>
-                    </a>
-                    <span class="work-location">New York, US</span>
+            <div class="work-entry">
+                <div class="entry-header">
+                    <a href="https://www.mayahdesign.com/beta" target="_blank" class="company-link"><span>Mayah Design</span><span class="company-arrow">↗</span></a>
+                    <span class="entry-location">New York, US</span>
                 </div>
-                <div class="work-subheader">
-                    <span class="job-title">Software Engineering Intern</span>
-                    <span class="work-date">Jan 2025 - July 2025</span>
+                <div class="entry-subheader">
+                    <span class="entry-title">Software Engineering Intern</span>
+                    <span class="entry-date">January 2025 - July 2025</span>
                 </div>
-                <div class="founder-line">
-                    Reported directly to the Founder, <a href="https://www.linkedin.com/in/alexis-chestnov/" target="_blank" class="founder-link">Alexis Haber</a>, as a founding engineer
-                </div>
-                <div class="work-description">
-                    Built the full-stack for the application using React, JavaScript, and Flask, performing API integrations, designing the database schema, and managing users' information; deployed and secured on AWS through EC2, S3, load balancers, Cognito, Rekognition, and RDS.
-                </div>
+                <div class="entry-mentor">Reported directly to the Founder, <a href="https://www.linkedin.com/in/alexis-chestnov/" target="_blank" class="founder-link">Alexis Haber</a>, as a founding engineer</div>
+                <div class="entry-desc">Built the full-stack for the application using React, JavaScript, and Flask, performing API integrations, designing the database schema, and managing users' information; deployed and secured on AWS through EC2, S3, load balancers, Cognito, Rekognition, and RDS.</div>
             </div>
-        </div>
-
-        <div class="work-item">
-            <div class="work-content">
-                <div class="work-header">
-                    <a href="https://www.tcs.com/" target="_blank" class="company-link">
-                        <span>Tata Consultancy Services (TCS)</span>
-                        <span class="company-arrow">↗</span>
-                    </a>
-                    <span class="work-location">Lucknow, IN</span>
+            <div class="work-entry">
+                <div class="entry-header">
+                    <a href="https://www.tcs.com/" target="_blank" class="company-link"><span>Tata Consultancy Services (TCS)</span><span class="company-arrow">↗</span></a>
+                    <span class="entry-location">Lucknow, IN</span>
                 </div>
-                <div class="work-subheader">
-                    <span class="job-title">Information Technology Intern</span>
-                    <span class="work-date">May 2023 - Jul 2023</span>
+                <div class="entry-subheader">
+                    <span class="entry-title">Information Technology Intern</span>
+                    <span class="entry-date">May 2023 - July 2023</span>
                 </div>
-                <div class="work-description">
-                    Developed dynamic web applications for TCS Events using Angular and NPM, integrating JSON Server to optimize data storage, retrieval, and engagement processes.
-                </div>
+                <div class="entry-desc">Developed dynamic web applications for TCS Events using Angular and NPM, integrating JSON Server to optimize data storage, retrieval, and engagement processes.</div>
             </div>
         </div>
     </div>
@@ -1337,42 +1205,8 @@
         </div>
     </div>
 
-    <div class="contact-section" id="contact">
-        <h2 class="section-title">LET'S WORK TOGETHER</h2>
-        
-        <div class="contact-info">
-            <div class="contact-label">Email</div>
-            <div class="email-container">
-                <svg class="email-icon" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18 0H2C0.9 0 0.01 0.9 0.01 2L0 14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM18 4L10 9L2 4V2L10 7L18 2V4Z" fill="#4a4a4a"/>
-                </svg>
-                <a href="mailto:anushka.bhatnagar@columbia.edu" class="email-link">anushka.bhatnagar@columbia.edu</a>
-            </div>
-        </div>
-
-        <div class="contact-info">
-            <div class="contact-label">LinkedIn</div>
-            <div class="email-container">
-                <svg class="email-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20.447 20.452H16.893V14.883C16.893 13.555 16.866 11.846 15.041 11.846C13.188 11.846 12.905 13.291 12.905 14.785V20.452H9.351V9H12.765V10.561H12.811C13.288 9.661 14.448 8.711 16.181 8.711C19.782 8.711 20.448 11.081 20.448 14.166V20.452H20.447ZM5.337 7.433C4.193 7.433 3.274 6.507 3.274 5.366C3.274 4.224 4.194 3.299 5.337 3.299C6.477 3.299 7.401 4.224 7.401 5.366C7.401 6.507 6.476 7.433 5.337 7.433ZM7.119 20.452H3.555V9H7.119V20.452ZM22.225 0H1.771C0.792 0 0 0.774 0 1.729V22.271C0 23.227 0.792 24 1.771 24H22.222C23.2 24 24 23.227 24 22.271V1.729C24 0.774 23.2 0 22.222 0H22.225Z" fill="#4a4a4a"/>
-                </svg>
-                <a href="https://linkedin.com/in/anushkabhatnagar" target="_blank" class="email-link">linkedin.com/in/anushkabhatnagar</a>
-            </div>
-        </div>
-
-        <div class="contact-info">
-            <div class="contact-label">GitHub</div>
-            <div class="email-container">
-                <svg class="email-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12C0 17.31 3.435 21.795 8.205 23.385C8.805 23.49 9.03 23.13 9.03 22.815C9.03 22.53 9.015 21.585 9.015 20.58C6 21.135 5.22 19.845 4.98 19.17C4.845 18.825 4.26 17.76 3.75 17.475C3.33 17.25 2.73 16.695 3.735 16.68C4.68 16.665 5.355 17.55 5.58 17.91C6.66 19.725 8.385 19.215 9.075 18.9C9.18 18.12 9.495 17.595 9.84 17.295C7.17 16.995 4.38 15.96 4.38 11.37C4.38 10.065 4.845 8.985 5.61 8.145C5.49 7.845 5.07 6.615 5.73 4.965C5.73 4.965 6.735 4.65 9.03 6.195C9.99 5.925 11.01 5.79 12.03 5.79C13.05 5.79 14.07 5.925 15.03 6.195C17.325 4.635 18.33 4.965 18.33 4.965C18.99 6.615 18.57 7.845 18.45 8.145C19.215 8.985 19.68 10.05 19.68 11.37C19.68 15.975 16.875 16.995 14.205 17.295C14.64 17.67 15.015 18.39 15.015 19.515C15.015 21.12 15 22.41 15 22.815C15 23.13 15.225 23.505 15.825 23.385C18.2072 22.5808 20.2773 21.0498 21.7438 19.0074C23.2103 16.9649 23.9994 14.5143 24 12C24 5.37 18.63 0 12 0Z" fill="#4a4a4a"/>
-                </svg>
-                <a href="https://github.com/AnushkaBhatnagar" target="_blank" class="email-link">github.com/AnushkaBhatnagar</a>
-            </div>
-        </div>
-    </div>
-
     <footer class="footer">
-        <p class="footer-text">Made by Anushka Bhatnagar. Last Updated January 2026.</p>
+        <p class="footer-text">Made by Anushka Bhatnagar. Last Updated March 2026.</p>
     </footer>
 </body>
 </html>
