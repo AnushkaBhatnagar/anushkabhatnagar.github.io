@@ -86,23 +86,31 @@
             margin-bottom: 20px;
         }
 
-        .skills-text {
+        .skills-row {
+            display: flex;
+            gap: 20px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(139, 126, 200, 0.2);
+        }
+
+        .skills-row:last-child {
+            border-bottom: none;
+        }
+
+        .skills-category {
+            font-family: 'Cardo', serif;
+            font-size: 16px;
+            color: #8B7EC8;
+            font-weight: 600;
+            min-width: 220px;
+            flex-shrink: 0;
+        }
+
+        .skills-list {
             font-family: 'Cardo', serif;
             font-size: 16px;
             color: #4a4a4a;
-            font-weight: 400;
             line-height: 1.6;
-            margin-bottom: 12px;
-        }
-
-        .skills-text:last-child {
-            margin-bottom: 0;
-        }
-
-        .skills-text strong {
-            color: #8B7EC8;
-            font-weight: 600;
-            margin-right: 8px;
         }
 
         .education-section {
@@ -823,6 +831,15 @@
                 gap: 30px;
             }
 
+            .skills-row {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .skills-category {
+                min-width: unset;
+            }
+
             .education-item {
                 flex-direction: column;
                 gap: 20px;
@@ -861,9 +878,6 @@
                 font-size: 16px;
             }
 
-            #flightMap {
-                display: none;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1010,7 +1024,15 @@
 
         body.dark-mode .description,
         body.dark-mode .about-text,
-        body.dark-mode .skills-text,
+        body.dark-mode .skills-category {
+            color: #a99de0;
+        }
+
+        body.dark-mode .skills-row {
+            border-bottom-color: rgba(169, 157, 224, 0.15);
+        }
+
+        body.dark-mode .skills-list,
         body.dark-mode .degree,
         body.dark-mode .specialization,
         body.dark-mode .volunteer-desc,
@@ -1242,9 +1264,18 @@
     </div>
     <div class="skills-section">
         <h3 class="skills-title">Skills:</h3>
-        <p class="skills-text"><strong>Languages:</strong> Java, Python, C, C++, HTML, CSS, JavaScript, TypeScript, SQL, R, MATLAB</p>
-        <p class="skills-text"><strong>Frameworks and Libraries:</strong> React, Angular, Flask, Node.js, jQuery, SQLAlchemy, LangChain, RAG, MCP</p>
-        <p class="skills-text"><strong>Cloud, Databases and Tools:</strong> AWS, Google Cloud, Azure, PostgreSQL, MySQL, Git, GitHub, Power BI, Adobe, Figma</p>
+        <div class="skills-row">
+            <span class="skills-category">Languages</span>
+            <span class="skills-list">Java, Python, C, C++, HTML, CSS, JavaScript, TypeScript, SQL, R, MATLAB</span>
+        </div>
+        <div class="skills-row">
+            <span class="skills-category">Frameworks & Libraries</span>
+            <span class="skills-list">React, Angular, Flask, Node.js, jQuery, SQLAlchemy, LangChain, RAG, MCP</span>
+        </div>
+        <div class="skills-row">
+            <span class="skills-category">Cloud, Databases & Tools</span>
+            <span class="skills-list">AWS, Google Cloud, Azure, PostgreSQL, MySQL, Git, GitHub, Power BI, Adobe, Figma</span>
+        </div>
     </div>
     <div class="education-section" id="education">
         <h2 class="section-title">EDUCATION</h2>
@@ -1298,7 +1329,7 @@
             <div class="work-entry">
                 <div class="entry-header">
                     <a href="https://www.cs.columbia.edu/~chilton/index.html" target="_blank" class="company-link"><span>Computational Design Lab, Columbia University</span><span class="company-arrow">↗</span></a>
-                    <span class="entry-location">New York, US</span>
+                    <span class="entry-location">New York City, US</span>
                 </div>
                 <div class="entry-subheader">
                     <span class="entry-title">Graduate Researcher</span>
@@ -1310,7 +1341,7 @@
             <div class="work-entry">
                 <div class="entry-header">
                     <a href="https://www.mayahdesign.com/beta" target="_blank" class="company-link"><span>Mayah Design</span><span class="company-arrow">↗</span></a>
-                    <span class="entry-location">New York, US</span>
+                    <span class="entry-location">New York City, US</span>
                 </div>
                 <div class="entry-subheader">
                     <span class="entry-title">Software Engineering Intern</span>
@@ -1564,6 +1595,7 @@
     <script>
         // ===== SCROLL TO TOP ON LOAD =====
         if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        if (window.location.hash) history.replaceState(null, '', window.location.pathname);
         window.scrollTo(0, 0);
 
         // ===== DARK MODE TOGGLE =====
