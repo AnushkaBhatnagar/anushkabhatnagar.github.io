@@ -6,10 +6,14 @@
     <title>Anushka Bhatnagar</title>
     <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/d3-array@3/dist/d3-array.min.js"></script>
+    <script src="https://unpkg.com/d3-geo@3/dist/d3-geo.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
     <style>
         /* Smooth scrolling for anchor links */
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 70px;
         }
 
         * {
@@ -22,7 +26,7 @@
             font-family: 'Cardo', serif;
             background: linear-gradient(135deg, #fff6ff 0%, #c1d6ff 100%);
             min-height: 100vh;
-            padding: 100px 80px 0 80px;
+            padding: 80px 80px 0 80px;
         }
 
         .hero-section {
@@ -188,7 +192,7 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 80px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -301,6 +305,21 @@
             }
         }
 
+        /* Gradient text on "Design" */
+        .gradient-design {
+            background: linear-gradient(240deg, #6a5aad 0%, #6a5aad 30%, #c4b8f0 50%, #6a5aad 70%, #6a5aad 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 2s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 100% center; }
+            100% { background-position: -100% center; }
+        }
+
         /* Research Publications Section */
         .research-section {
             margin-top: 80px;
@@ -372,8 +391,12 @@
 
         /* Work Section — shared */
         .work-section {
-            margin-top: 80px;
+            margin-top: 20px;
             max-width: 1200px;
+        }
+
+        #leadership {
+            margin-bottom: 80px;
         }
 
         .work-section:last-of-type {
@@ -645,24 +668,6 @@
             margin-bottom: 14px;
         }
 
-        .github-button {
-            font-family: 'Cardo', serif;
-            font-size: 16px;
-            color: #8B7EC8;
-            background: transparent;
-            border: 2px solid #8B7EC8;
-            padding: 8px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-
-        .github-button:hover {
-            background-color: #8B7EC8;
-            color: white;
-        }
-
         /* Contributed To Section */
         .contributed-subtitle {
             font-family: 'Cardo', serif;
@@ -671,106 +676,6 @@
             font-weight: 400;
             margin-top: 60px;
             margin-bottom: 30px;
-        }
-
-        .contribution-card {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 25px;
-            display: flex;
-            gap: 0;
-            align-items: stretch;
-            overflow: hidden;
-        }
-
-        .contribution-image {
-            width: 170px;
-            border-radius: 0;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .contribution-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .contribution-content {
-            flex: 1;
-            padding: 18px;
-        }
-
-        .contribution-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .contribution-title {
-            font-family: 'Cardo', serif;
-            font-size: 20px;
-            color: #8B7EC8;
-            font-weight: 400;
-            margin-bottom: 6px;
-            line-height: 1.3;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .website-link {
-            font-family: 'Cardo', serif;
-            font-size: 14px;
-            color: #8B7EC8;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .mentored-by {
-            font-family: 'Cardo', serif;
-            font-size: 14px;
-            color: #4a4a4a;
-            line-height: 1.4;
-            margin-bottom: 12px;
-        }
-
-        .mentored-by strong {
-            color: #2c2c2c;
-        }
-
-        .mentor-link {
-            color: #8B7EC8;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .mentor-link:hover {
-            opacity: 0.7;
-        }
-
-        .contribution-details {
-            margin-bottom: 15px;
-        }
-
-        .contribution-detail {
-            font-family: 'Cardo', serif;
-            font-size: 14px;
-            color: #4a4a4a;
-            line-height: 1.4;
-            margin-bottom: 6px;
-        }
-
-        .contribution-detail strong {
-            color: #2c2c2c;
-        }
-
-        .contribution-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
         }
 
         .contribution-bullet {
@@ -791,6 +696,47 @@
             left: 0;
             top: 0;
             font-size: 14px;
+        }
+
+        /* Flight Map */
+        .flight-map-wrapper {
+            max-width: 1200px;
+            margin: 40px 0;
+        }
+
+        .flight-map-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 500;
+            color: #4a4a4a;
+            margin-bottom: 35px;
+        }
+
+        #flightMap {
+            width: 100%;
+            height: auto;
+            opacity: 1;
+        }
+
+        body.dark-mode .flight-map-text {
+            color: #b0adc0;
+        }
+
+        #flightMap svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .flight-map-label {
+            font-family: 'Cardo', serif;
+            font-size: 11px;
+            fill: #2c2c2c;
+            pointer-events: none;
+        }
+
+        body.dark-mode .flight-map-label {
+            fill: #e8e6f0;
         }
 
         /* Responsive Design */
@@ -914,6 +860,10 @@
             .nav-links a {
                 font-size: 16px;
             }
+
+            #flightMap {
+                display: none;
+            }
         }
 
         @media (max-width: 480px) {
@@ -934,7 +884,7 @@
                 margin-bottom: 40px;
             }
 
-            .description, .tagline {
+            .description {
                 font-size: 18px;
             }
 
@@ -954,11 +904,6 @@
                 font-size: 14px;
             }
 
-            .github-button {
-                font-size: 14px;
-                padding: 6px 16px;
-            }
-
             .nav-links {
                 gap: 15px;
             }
@@ -975,13 +920,6 @@
                 font-size: 20px;
             }
 
-            .contribution-title {
-                font-size: 18px;
-            }
-
-            .contribution-detail {
-                font-size: 14px;
-            }
         }
 
         /* Footer */
@@ -1025,12 +963,248 @@
                 font-size: 12px;
             }
         }
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #2c2c2c;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            opacity: 0.7;
+            transform: rotate(15deg);
+        }
+
+        body .moon-icon { display: none; }
+        body .sun-icon { display: block; }
+        body.dark-mode .moon-icon { display: block; }
+        body.dark-mode .sun-icon { display: none; }
+
+        /* Dark Mode Overrides */
+        body.dark-mode {
+            transition: background 0.4s ease;
+        }
+
+        body.dark-mode .main-heading,
+        body.dark-mode .section-title,
+        body.dark-mode .university-header,
+        body.dark-mode .location,
+        body.dark-mode .skills-title,
+        body.dark-mode .volunteer-header,
+        body.dark-mode .contributed-subtitle,
+        body.dark-mode .work-entry .entry-header,
+        body.dark-mode .contribution-bullet,
+        body.dark-mode .publication-authors strong,
+        body.dark-mode .publication-details strong {
+            color: #e8e6f0;
+        }
+
+        body.dark-mode .description,
+        body.dark-mode .about-text,
+        body.dark-mode .skills-text,
+        body.dark-mode .degree,
+        body.dark-mode .specialization,
+        body.dark-mode .volunteer-desc,
+        body.dark-mode .work-entry .entry-desc,
+        body.dark-mode .project-description,
+        body.dark-mode .publication-authors,
+        body.dark-mode .publication-details {
+            color: #b0adc0;
+        }
+
+        body.dark-mode .hero-links a,
+        body.dark-mode .hero-links-divider,
+        body.dark-mode .work-entry .entry-location,
+        body.dark-mode .work-entry .entry-date,
+        body.dark-mode .work-entry .entry-mentor,
+        body.dark-mode .volunteer-date,
+        body.dark-mode .footer-text {
+            color: #8a879a;
+        }
+
+        body.dark-mode .nav-links a,
+        body.dark-mode .company-link,
+        body.dark-mode .theme-toggle {
+            color: #e8e6f0;
+            background: rgba(26, 26, 46, 0.85);
+        }
+
+        body.dark-mode .nav-dropdown-trigger {
+            background: rgba(26, 26, 46, 0.85);
+        }
+
+        body.dark-mode .project-card,
+        body.dark-mode .publication-card {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-mode .project-card:hover,
+        body.dark-mode .publication-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .work-list-hr .work-entry {
+            border-bottom-color: rgba(139, 126, 200, 0.15);
+        }
+
+        body.dark-mode .footer {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .hero-links a:hover,
+        body.dark-mode .company-link:hover {
+            color: #a89adb;
+        }
+
+        /* Page Nav dropdown */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-trigger {
+            cursor: pointer;
+            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 6px;
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            display: flex;
+            gap: 24px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 8px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .nav-dropdown-menu a {
+            font-family: 'Cardo', serif;
+            font-size: 14px;
+            color: #2c2c2c;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-dropdown-menu a:hover {
+            opacity: 0.7;
+        }
+
+        body.dark-mode .nav-dropdown-menu {
+            background: rgba(26, 26, 46, 0.85);
+        }
+
+        body.dark-mode .nav-dropdown-menu a {
+            color: #e8e6f0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-dropdown-menu {
+                gap: 14px;
+                padding: 10px 16px;
+            }
+
+            .nav-dropdown-menu a {
+                font-size: 12px;
+            }
+        }
+
+        /* Back to top arrow */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 40px;
+            padding: 8px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 8px;
+            font-family: 'Cardo', serif;
+            color: #2c2c2c;
+            text-decoration: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top-arrow {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .back-to-top-label {
+            font-size: 10px;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .back-to-top:hover {
+            opacity: 0.7;
+        }
+
+        body.dark-mode .back-to-top {
+            background: rgba(26, 26, 46, 0.85);
+            color: #e8e6f0;
+        }
     </style>
 </head>
-<body>
+<body id="top">
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="#">About</a></li>
+            <li class="nav-dropdown">
+                <a href="#" class="nav-dropdown-trigger">Page Nav</a>
+                <div class="nav-dropdown-menu">
+                    <a href="#top">About</a>
+                    <a href="#education">Education</a>
+                    <a href="#work">Work</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#research">Research</a>
+                    <a href="#leadership">Leadership</a>
+                    <a href="#volunteering">Volunteering</a>
+                </div>
+            </li>
+            <li>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+            </li>
         </ul>
     </nav>
 
@@ -1042,7 +1216,7 @@
             <p class="main-heading">Hey, I'm Anushka Bhatnagar</p>
 
             <p class="description">I'm a Full-Stack and AI Developer</p>
-            <p class="description">I Innovate through Design</p>
+            <p class="description">I Innovate through <span class="gradient-design">Design</span></p>
 
             <div class="hero-about">
                 <p class="about-text">I'm a Graduate Computer Science student at Columbia University, passionate about innovation and design in technology.</p>
@@ -1072,7 +1246,7 @@
         <p class="skills-text"><strong>Frameworks and Libraries:</strong> React, Angular, Flask, Node.js, jQuery, SQLAlchemy, LangChain, RAG, MCP</p>
         <p class="skills-text"><strong>Cloud, Databases and Tools:</strong> AWS, Google Cloud, Azure, PostgreSQL, MySQL, Git, GitHub, Power BI, Adobe, Figma</p>
     </div>
-    <div class="education-section">
+    <div class="education-section" id="education">
         <h2 class="section-title">EDUCATION</h2>
         
         <div class="education-item">
@@ -1100,10 +1274,13 @@
         </div>
     </div>
 
+    <div class="flight-map-wrapper">
+        <p class="flight-map-text">I live in the 3 best cities of the world</p>
+        <div id="flightMap"></div>
     </div>
 
     <!-- ORIGINAL: Resume-style with right-aligned location & date -->
-    <div class="work-section">
+    <div class="work-section" id="work">
         <h2 class="section-title">WORK</h2>
         <div class="work-list-hr">
             <div class="work-entry">
@@ -1156,7 +1333,7 @@
         </div>
     </div>
 
-    <div class="projects-section">
+    <div class="projects-section" id="projects">
         <h2 class="section-title">PROJECTS</h2>
         <p class="projects-subtitle">
             <a href="https://github.com/AnushkaBhatnagar/" target="_blank" class="view-all-link">View All Projects on GitHub →</a>
@@ -1270,7 +1447,7 @@
                 </div>
             </div>
         </div>
-         <div class="research-section">
+         <div class="research-section" id="research">
         <h2 class="section-title">RESEARCH PUBLICATIONS</h2>
         
         <div class="publication-card">
@@ -1324,7 +1501,7 @@
         </div>
     </div>
 
-    <div class="work-section">
+    <div class="work-section" id="leadership">
         <h2 class="section-title">LEADERSHIP ACTIVITIES</h2>
         <div class="work-list-hr">
             <div class="work-entry">
@@ -1350,7 +1527,7 @@
         </div>
     </div>
 
-    <div class="work-section">
+    <div class="work-section" id="volunteering">
         <h2 class="section-title">VOLUNTEERING</h2>
 
         <div class="volunteer-item">
@@ -1378,5 +1555,222 @@
     <footer class="footer">
         <p class="footer-text">Made by Anushka Bhatnagar. Last Updated March 2026.</p>
     </footer>
+
+    <a href="#top" class="back-to-top" aria-label="Back to top">
+        <span class="back-to-top-arrow">↑</span>
+        <span class="back-to-top-label">Top</span>
+    </a>
+
+    <script>
+        // ===== SCROLL TO TOP ON LOAD =====
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        window.scrollTo(0, 0);
+
+        // ===== DARK MODE TOGGLE =====
+        const lightStops = [
+            { at: 0.0,  from: [255, 255, 255], to: [255, 255, 255] },  // hero — pure white
+            { at: 0.1,  from: [255, 253, 251], to: [253, 252, 255] },  // education — warm pearl
+            { at: 0.2,  from: [255, 255, 255], to: [255, 255, 255] },  // map — white
+            { at: 0.4,  from: [251, 249, 255], to: [250, 248, 255] },  // Work — periwinkle
+            { at: 0.55, from: [242, 255, 250], to: [244, 255, 252] },  // Projects — soft mint
+            { at: 0.75, from: [248, 244, 255], to: [246, 242, 255] },  // Research — soft lavender
+            { at: 1.0,  from: [255, 255, 255], to: [255, 255, 255] },  // matches hero
+        ];
+
+        const darkStops = [
+            { at: 0.0,  from: [18, 18, 35],  to: [30, 25, 50] },
+            { at: 0.2,  from: [22, 20, 40],  to: [28, 24, 48] },
+            { at: 0.4,  from: [20, 24, 38],  to: [26, 22, 45] },
+            { at: 0.6,  from: [24, 22, 42],  to: [20, 20, 38] },
+            { at: 0.8,  from: [20, 22, 40],  to: [25, 20, 45] },
+            { at: 1.0,  from: [18, 18, 36],  to: [22, 18, 38] },
+        ];
+
+        let isDark = localStorage.getItem('theme') === 'dark';
+
+        function getStops() {
+            return isDark ? darkStops : lightStops;
+        }
+
+        function applyTheme() {
+            document.body.classList.toggle('dark-mode', isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateGradient();
+        }
+
+        // Apply immediately to prevent flash
+        if (isDark) document.body.classList.add('dark-mode');
+
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            isDark = !isDark;
+            applyTheme();
+        });
+
+        // ===== FLIGHT ROUTE MAP (D3-geo SVG) =====
+        (function initFlightMap() {
+            const cities = [
+                { name: 'Lucknow',      coords: [80.9462, 26.8467] },
+                { name: 'Mumbai',        coords: [72.8777, 19.0760] },
+                { name: 'New York City', coords: [-74.0060, 40.7128] },
+            ];
+
+            const routes = [
+                [0, 1],
+                [1, 2],
+                [0, 2],
+            ];
+
+            const container = document.getElementById('flightMap');
+            const width = 960;
+            const height = 500;
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('viewBox', '0 0 960 500');
+            svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+            container.appendChild(svg);
+
+            const projection = d3.geoNaturalEarth1()
+                .scale(170)
+                .translate([width / 2, height / 2]);
+
+            const pathGen = d3.geoPath(projection);
+
+            // Land group
+            const landGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            svg.appendChild(landGroup);
+
+            // Arcs group
+            const arcsGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            svg.appendChild(arcsGroup);
+
+            // Markers + labels group
+            const markersGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            svg.appendChild(markersGroup);
+
+            const landFill = () => isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+            const landStroke = () => isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.1)';
+            const markerColor = () => isDark ? '#a89adb' : '#7a6baa';
+            const arcColor = () => isDark ? 'rgba(168,154,219,0.5)' : 'rgba(122,107,170,0.4)';
+
+            // Load and render land
+            fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json')
+                .then(r => r.json())
+                .then(topo => {
+                    const land = topojson.feature(topo, topo.objects.land);
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path.setAttribute('d', pathGen(land));
+                    path.setAttribute('fill', landFill());
+                    path.setAttribute('stroke', landStroke());
+                    path.setAttribute('stroke-width', '0.5');
+                    path.id = 'landPath';
+                    landGroup.appendChild(path);
+                });
+
+            // Draw arcs as great-circle interpolations
+            function drawArcs() {
+                arcsGroup.innerHTML = '';
+                routes.forEach(([i, j]) => {
+                    const interp = d3.geoInterpolate(cities[i].coords, cities[j].coords);
+                    const points = [];
+                    for (let t = 0; t <= 1; t += 0.02) {
+                        const p = projection(interp(t));
+                        if (p) points.push(p);
+                    }
+                    if (points.length < 2) return;
+                    const d = 'M' + points.map(p => p[0] + ',' + p[1]).join('L');
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path.setAttribute('d', d);
+                    path.setAttribute('fill', 'none');
+                    path.setAttribute('stroke', arcColor());
+                    path.setAttribute('stroke-width', '2');
+                    path.setAttribute('stroke-dasharray', '6,4');
+                    path.setAttribute('stroke-linecap', 'round');
+                    arcsGroup.appendChild(path);
+                });
+            }
+
+            // Draw city markers and labels
+            function drawMarkers() {
+                markersGroup.innerHTML = '';
+                cities.forEach(city => {
+                    const p = projection(city.coords);
+                    if (!p) return;
+
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', p[0]);
+                    circle.setAttribute('cy', p[1]);
+                    circle.setAttribute('r', '4');
+                    circle.setAttribute('fill', markerColor());
+                    circle.setAttribute('opacity', '0.9');
+                    markersGroup.appendChild(circle);
+
+                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    text.setAttribute('x', p[0]);
+                    text.setAttribute('y', p[1] - 10);
+                    text.setAttribute('text-anchor', 'middle');
+                    text.classList.add('flight-map-label');
+                    text.textContent = city.name;
+                    markersGroup.appendChild(text);
+                });
+            }
+
+            drawArcs();
+            drawMarkers();
+
+            // Update colors on theme toggle
+            function updateMapTheme() {
+                const land = document.getElementById('landPath');
+                if (land) {
+                    land.setAttribute('fill', landFill());
+                    land.setAttribute('stroke', landStroke());
+                }
+                drawArcs();
+                drawMarkers();
+            }
+
+            const _originalApplyTheme = applyTheme;
+            applyTheme = function() {
+                _originalApplyTheme();
+                updateMapTheme();
+            };
+        })();
+
+        // ===== SMOOTH SCROLL GRADIENT MORPH =====
+        function lerp(a, b, t) {
+            return a.map((v, i) => Math.round(v + (b[i] - v) * t));
+        }
+
+        function updateGradient() {
+            const stops = getStops();
+            const scrollFraction = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            const t = Math.max(0, Math.min(1, scrollFraction || 0));
+
+            let i = stops.findIndex(s => s.at >= t);
+            if (i <= 0) i = 1;
+            const prev = stops[i - 1];
+            const next = stops[i];
+            const localT = (t - prev.at) / (next.at - prev.at);
+
+            const from = lerp(prev.from, next.from, localT);
+            const to = lerp(prev.to, next.to, localT);
+            document.body.style.background = `linear-gradient(135deg, rgb(${from}) 0%, rgb(${to}) 100%)`;
+        }
+
+        const backToTop = document.querySelector('.back-to-top');
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateGradient();
+                    backToTop.classList.toggle('visible', window.scrollY > 400);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Set initial gradient
+        updateGradient();
+    </script>
 </body>
 </html>
