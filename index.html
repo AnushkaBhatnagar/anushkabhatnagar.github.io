@@ -17,9 +17,9 @@
     <meta name="twitter:image" content="https://anushkabhatnagar.github.io/images/Anushka.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script defer src="https://unpkg.com/d3-array@3/dist/d3-array.min.js"></script>
-    <script defer src="https://unpkg.com/d3-geo@3/dist/d3-geo.min.js"></script>
-    <script defer src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-array@3/dist/d3-array.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-geo@3/dist/d3-geo.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
     <style>
         /* Smooth scrolling for anchor links */
         html {
@@ -1870,7 +1870,7 @@
 
             // Load and render land
             const mapLoading = document.getElementById('mapLoading');
-            fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json')
+            fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json', { cache: 'force-cache' })
                 .then(r => r.json())
                 .then(topo => {
                     if (mapLoading) mapLoading.remove();
